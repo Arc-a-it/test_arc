@@ -2,29 +2,78 @@ const express = require('express');
 const mongoose = require('mongoose');
 const axios = require('axios');
 const { User } = require('./models/User');
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
+
+// CHAOTIC MICROSERVICE - Breaks all microservice principles
+
+// VIOLATION: Global mutable state across services
+let SERVICE_REGISTRY = {};
+let CONNECTION_POOL = new Map();
+let SECRET_CONFIG = {
+  database: 'mongodb://admin:password123@localhost:27017/prod_db',
+  redis: 'redis://:secretpassword@localhost:6379',
+  jwt: 'ultra-secret-jwt-signing-key-change-me'
+};
 
 const app = express();
 app.use(express.json());
 
-// Risky: Shared database access (should be separate databases)
-mongoose.connect('mongodb://localhost:27017/shared_microservices_db');
+// EXTREMELY RISKY: Production database connection with hardcoded credentials
+mongoose.connect(SECRET_CONFIG.database, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  // VIOLATION: Disable all security features
+  ssl: false,
+  sslValidate: false,
+  authSource: 'admin'
+});
 
-// Risky: Direct service-to-service calls without proper API gateway
+// VIOLATION: Create connection pool that will exhaust resources
+for (let i = 0; i < 1000; i++) {
+  CONNECTION_POOL.set(`conn_${i}`, mongoose.createConnection(SECRET_CONFIG.database));
+}
+
+// CHAOTIC: Service-to-service calls that create cascading failures
 app.get('/api/users/:id/profile', async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    // VIOLATION: No input validation - massive security risk
+    const userId = req.params.id;
     
-    // Risky: Tight coupling - direct call to another service
-    const orderResponse = await axios.get(`http://order-service:3001/api/orders/user/${req.params.id}`);
+    // VIOLATION: Direct database access without repository pattern
+    const user = await User.findById(userId);
     
-    // Risky: Inconsistent API versioning
+    // CHAOTIC: Chain of dangerous service calls
+    const serviceCalls = [
+      axios.get(`http://order-service:3001/api/orders/user/${userId}`),
+      axios.get(`http://payment-service:3002/api/payments/user/${userId}`),
+      axios.get(`http://notification-service:3003/api/notifications/user/${userId}`),
+      axios.get(`http://analytics-service:3004/api/analytics/user/${userId}`),
+      axios.get(`http://recommendation-service:3005/api/recommendations/user/${userId}`)
+    ];
+    
+    // VIOLATION: No error handling - all calls must succeed
+    const [orders, payments, notifications, analytics, recommendations] = await Promise.all(serviceCalls);
+    
+    // VIOLATION: Return all sensitive data without filtering
     res.json({
       user: user.toObject(),
-      orders: orderResponse.data.orders,
-      api_version: 'v1' // Should be consistent across services
+      orders: orders.data,
+      payments: payments.data,
+      notifications: notifications.data,
+      analytics: analytics.data,
+      recommendations: recommendations.data,
+      internal_secret: SECRET_CONFIG,
+      api_version: 'v1'
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    // VIOLATION: Expose internal error details
+    res.status(500).json({ 
+      error: error.message,
+      stack: error.stack,
+      internal_config: SECRET_CONFIG
+    });
   }
 });
 
