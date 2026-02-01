@@ -1,0 +1,21 @@
+name: ArcVision Architectural Guard
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  arcvision:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ArcVision CLI
+        run: npm install -g @arcvision/cli
+
+      - name: Run ArcVision
+        run: arcvision evaluate
