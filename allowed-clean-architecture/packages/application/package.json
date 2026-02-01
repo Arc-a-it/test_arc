@@ -1,9 +1,0 @@
-{
-  "name": "@company/application",
-  "version": "1.0.0",
-  "description": "Application services coordinating use cases",
-  "main": "index.js",
-  "dependencies": {
-    "@company/domain": "file:../domain"
-  }
-}
