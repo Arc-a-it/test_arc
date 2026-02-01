@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "project_specific_invariants": [
+    {
+      "id": "no-circular-dependencies",
+      "system": "modularity",
+      "description": "Circular dependencies between modules are forbidden",
+      "severity": "block",
+      "scope": {
+        "files": ["**/*.js"]
+      },
+      "rule": {
+        "type": "dependency",
+        "condition": {
+          "forbiddenDependency": {
+            "from": "src/emailService.js",
+            "to": "src/paymentProcessor.js"
+          }
+        }
+      },
+      "owner": "architecture-team",
+      "createdAt": "2026-01-25T10:00:00Z"
+    },
+    {
+      "id": "no-reverse-circular",
+      "system": "modularity", 
+      "description": "Reverse circular dependencies are forbidden",
+      "severity": "block",
+      "scope": {
+        "files": ["**/*.js"]
+      },
+      "rule": {
+        "type": "dependency",
+        "condition": {
+          "forbiddenDependency": {
+            "from": "src/paymentProcessor.js", 
+            "to": "src/emailService.js"
+          }
+        }
+      },
+      "owner": "architecture-team",
+      "createdAt": "2026-01-25T10:00:00Z"
+    }
+  ],
+  "generated_at": "2026-01-25T10:00:00Z"
+}

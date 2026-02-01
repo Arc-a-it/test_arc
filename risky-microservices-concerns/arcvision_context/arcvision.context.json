@@ -1,0 +1,369 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-01-25T14:04:06.175Z",
+  "system": {
+    "name": "risky-microservices-concerns",
+    "root_path": "C:\\Users\\AHMAD RAZA\\Downloads\\ArcVision\\test_repos\\risky-microservices-concerns",
+    "language": "javascript",
+    "archetype": {
+      "type": "schema_driven",
+      "confidence": "low",
+      "description": "System primarily follows schema_driven architectural pattern",
+      "authorityPattern": "schema_driven_authority"
+    }
+  },
+  "nodes": [
+    {
+      "id": "7ae45ad102eab3b6",
+      "type": "file",
+      "path": "package.json",
+      "role": "module",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "generic",
+      "criticality": 0
+    },
+    {
+      "id": "a8eb73bcc33bc0e6",
+      "type": "file",
+      "path": "services/shared-models/package.json",
+      "role": "service",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "logic",
+      "criticality": 0
+    },
+    {
+      "id": "a97c0e1624d0d70e",
+      "type": "file",
+      "path": "arcvision_context/architecture.authority.ledger.json",
+      "role": "store",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "state",
+      "criticality": 2
+    },
+    {
+      "id": "b6546184e6bcf49c",
+      "type": "file",
+      "path": "services/user-service/package.json",
+      "role": "service",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "logic",
+      "criticality": 0
+    },
+    {
+      "id": "d0fd304ff58028ab",
+      "type": "file",
+      "path": "services/user-service/src/server.js",
+      "role": "service",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "logic",
+      "criticality": 0
+    },
+    {
+      "id": "f103cadc18e617a8",
+      "type": "file",
+      "path": "services/shared-models/index.js",
+      "role": "service",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "logic",
+      "criticality": 0.8
+    }
+  ],
+  "edges": [],
+  "symbols": [],
+  "metrics": {
+    "files_with_functions": 0,
+    "files_with_high_blast_radius": 0,
+    "total_calls": 0,
+    "total_dependencies": 0,
+    "total_depends_on": 0,
+    "total_edges": 0,
+    "total_files": 6,
+    "total_imports": 0,
+    "total_nodes": 6,
+    "total_owns": 0
+  },
+  "contextSurface": [
+    {
+      "file": "arcvision_context/architecture.authority.ledger.json",
+      "score": 2,
+      "reason": "Blast: 0, Deps: 0"
+    },
+    {
+      "file": "services/shared-models/index.js",
+      "score": 0.8,
+      "reason": "Blast: 0, Deps: 0"
+    },
+    {
+      "file": "package.json",
+      "score": 0,
+      "reason": "Blast: 0, Deps: 0"
+    },
+    {
+      "file": "services/shared-models/package.json",
+      "score": 0,
+      "reason": "Blast: 0, Deps: 0"
+    },
+    {
+      "file": "services/user-service/package.json",
+      "score": 0,
+      "reason": "Blast: 0, Deps: 0"
+    }
+  ],
+  "assumptions": [
+    "Dynamic imports resolved statically where possible",
+    "Runtime reflection not fully captured",
+    "Only code reachable from entry points analyzed",
+    "Third-party dependencies treated as black boxes",
+    "Build-time code generation not reflected in static analysis",
+    "ArcVision prioritizes execution-relevant structure over exhaustive file indexing. Non-runtime files are represented as envelope metadata unless they directly affect execution."
+  ],
+  "source": {
+    "repo": "https://github.com/leafmintaiAR/ArcVision",
+    "commit": "eb048d045589040ef0c8939c20267ca67e67c77c",
+    "generated_at": "2026-01-25",
+    "arcvision_version": "0.1.0"
+  },
+  "structural_layers": {
+    "runtime_code": {
+      "status": "included",
+      "description": "Source files that directly participate in runtime execution and system behavior",
+      "project_characteristics": {
+        "has_package_json": true,
+        "has_src_directory": false,
+        "total_files": 6,
+        "javascript_files": 2,
+        "typescript_files": 0,
+        "lua_files": 0
+      }
+    },
+    "execution_scripts": {
+      "status": "included",
+      "description": "Scripts invoked by runtime code to perform atomic or system-critical operations",
+      "project_characteristics": {
+        "lua_files_count": 0,
+        "is_lua_project": false
+      }
+    },
+    "infrastructure_scripts": {
+      "status": "included",
+      "description": "Scripts that manage infrastructure-level behavior (queues, databases, orchestration)"
+    },
+    "configuration": {
+      "status": "excluded",
+      "description": "Project configuration files represented as metadata, not execution graph nodes"
+    },
+    "documentation": {
+      "status": "optional",
+      "description": "Documentation files represented as metadata only"
+    },
+    "assets": {
+      "status": "excluded",
+      "description": "Static assets with no effect on execution semantics"
+    },
+    "project_metadata": {
+      "size_category": "small",
+      "file_count": 6,
+      "language_mix": {
+        "javascript": 2,
+        "typescript": 0,
+        "lua": 0,
+        "config": 4
+      },
+      "has_package_management": true,
+      "has_standard_structure": false,
+      "has_tests": false,
+      "is_lua_intensive": false
+    }
+  },
+  "project_envelope": {
+    "configuration_files": [
+      {
+        "path": "package.json",
+        "role": "dependency_manifest"
+      },
+      {
+        "path": "services\\shared-models\\package.json",
+        "role": "dependency_manifest"
+      },
+      {
+        "path": "services\\user-service\\package.json",
+        "role": "dependency_manifest"
+      }
+    ],
+    "documentation": [],
+    "build_tools": []
+  },
+  "authority_cores": [],
+  "hidden_coupling": [],
+  "completeness_metrics": {
+    "total_files_analyzed": 6,
+    "code_files": 0,
+    "configuration_files": 0,
+    "documentation_files": 0,
+    "coverage_percentage": 100
+  },
+  "structural_hubs": [],
+  "architectural_boundaries": {
+    "state": {
+      "files": 1,
+      "authority_cores": [],
+      "boundary_violations": []
+    },
+    "generic": {
+      "files": 1,
+      "authority_cores": [],
+      "boundary_violations": []
+    },
+    "logic": {
+      "files": 4,
+      "authority_cores": [],
+      "boundary_violations": []
+    }
+  },
+  "structural_invariants": [
+    {
+      "rule": "service_component_ratio",
+      "description": "Maintain balance between services and components",
+      "current_value": null,
+      "recommended_range": "0.2-0.5"
+    }
+  ],
+  "invariants": [],
+  "invariant_analysis": {
+    "summary": {
+      "total": 0,
+      "critical": 0,
+      "non_critical": 0,
+      "by_scope": {
+        "module": [],
+        "boundary": [],
+        "system": []
+      }
+    },
+    "insights": [
+      {
+        "category": "invariant_gaps",
+        "title": "No Critical Invariants Detected",
+        "description": "The system does not appear to have explicitly defined critical invariants. This could indicate either a lack of formal invariant definition or that invariants are implicit.",
+        "severity": "medium",
+        "impact": "Consider defining critical invariants for system resilience"
+      }
+    ],
+    "recommendations": [
+      {
+        "priority": "high",
+        "title": "Define Critical System Invariants",
+        "description": "Establish explicit critical invariants that must always hold to prevent system-wide failures.",
+        "action": "Create invariant definitions for core system behaviors that cannot be violated."
+      },
+      {
+        "priority": "low",
+        "title": "Document Invariant Behavior",
+        "description": "Ensure that all detected invariants are properly documented for team awareness.",
+        "action": "Create documentation explaining each invariant and why it exists."
+      },
+      {
+        "priority": "medium",
+        "title": "Monitor Invariant Violations",
+        "description": "Set up monitoring to track when invariants are violated during system operation.",
+        "action": "Implement logging and alerting for invariant violations."
+      }
+    ],
+    "confidence": "low"
+  },
+  "architectural_health": {
+    "score": 30,
+    "level": "poor",
+    "assessment": "The system lacks formal architectural invariants, making it vulnerable to structural degradation over time."
+  },
+  "authoritative_context": {
+    "metadata": {
+      "canonical": true,
+      "generated_at": "2026-01-25T14:04:05.942Z",
+      "source_commit": "eb048d045589040ef0c8939c20267ca67e67c77c",
+      "arcvision_version": "0.1.0",
+      "schema_version": "1.0.0",
+      "trust_level": "high"
+    },
+    "system_identity": {
+      "name": "risky-microservices-concerns",
+      "root_path": "C:\\Users\\AHMAD RAZA\\Downloads\\ArcVision\\test_repos\\risky-microservices-concerns",
+      "language": "javascript",
+      "architectural_archetype": {
+        "type": "schema_driven",
+        "confidence": "low",
+        "description": "System primarily follows schema_driven architectural pattern",
+        "authorityPattern": "schema_driven_authority"
+      },
+      "structural_complexity": {
+        "cyclomatic_complexity": -4,
+        "coupling_degree": 0,
+        "cohesion_measure": 0.7,
+        "overall_complexity": "medium"
+      }
+    },
+    "structural_context": {
+      "authority_cores": [],
+      "structural_hubs": [],
+      "coupling_patterns": [],
+      "architectural_boundaries": {
+        "state": {
+          "files": 1,
+          "authority_cores": [],
+          "boundary_violations": []
+        },
+        "generic": {
+          "files": 1,
+          "authority_cores": [],
+          "boundary_violations": []
+        },
+        "logic": {
+          "files": 4,
+          "authority_cores": [],
+          "boundary_violations": []
+        }
+      },
+      "structural_invariants": [
+        {
+          "rule": "service_component_ratio",
+          "description": "Maintain balance between services and components",
+          "current_value": null,
+          "recommended_range": "0.2-0.5"
+        }
+      ]
+    },
+    "reliability_indicators": {
+      "analysis_coverage": {
+        "total_files_analyzed": 6,
+        "code_files": 0,
+        "configuration_files": 0,
+        "documentation_files": 0,
+        "coverage_percentage": 100
+      },
+      "structural_completeness": {
+        "completeness_score": 95,
+        "missing_elements": [],
+        "validation_passed": true
+      },
+      "confidence_scores": {
+        "overall_confidence": 0.92,
+        "data_quality": 0.95,
+        "analysis_depth": 0.88
+      },
+      "validation_status": "validated"
+    },
+    "integrity": {
+      "content_hash": "7898431e00f54c90863c8e88caf88f122eed3c31e61538328c6022bb149e605d",
+      "generation_signature": "4e9de9246994235e9eede0bb88297cda4957f9b601a1b23ef6de9a380ddca306"
+    }
+  },
+  "integrity": {
+    "sha256": "e6ca4842605a3d63793dbb3b0b348d709b66a86982a75692469896fcd5b3e0fa"
+  }
+}

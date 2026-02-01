@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "system_id": "blocked-legacy-monolith",
+  "created_at": "2026-01-25T14:02:28.556Z",
+  "ledger": [
+    {
+      "event_id": "evt_1769399887949_689qgi3f6",
+      "timestamp": "2026-01-26T03:58:07.949Z",
+      "decision": "BLOCKED",
+      "commit": "HEAD",
+      "branch": "unknown",
+      "author": "unknown",
+      "violations": [
+        {
+          "id": "no-circular-dependencies",
+          "description": "Circular dependencies between modules are forbidden",
+          "system": "modularity",
+          "severity": "block"
+        },
+        {
+          "id": "no-reverse-circular",
+          "description": "Reverse circular dependencies are forbidden",
+          "system": "modularity",
+          "severity": "block"
+        }
+      ],
+      "blast_radius": 0,
+      "affected_nodes": 0,
+      "override": false
+    },
+    {
+      "event_id": "evt_1769401639070_bszgorx5m",
+      "timestamp": "2026-01-26T04:27:19.070Z",
+      "decision": "BLOCKED",
+      "commit": "HEAD",
+      "branch": "unknown",
+      "author": "unknown",
+      "violations": [
+        {
+          "id": "no-circular-dependencies",
+          "description": "Circular dependencies between modules are forbidden",
+          "system": "modularity",
+          "severity": "block"
+        },
+        {
+          "id": "no-reverse-circular",
+          "description": "Reverse circular dependencies are forbidden",
+          "system": "modularity",
+          "severity": "block"
+        }
+      ],
+      "blast_radius": 0,
+      "affected_nodes": 0,
+      "override": false
+    }
+  ]
+}

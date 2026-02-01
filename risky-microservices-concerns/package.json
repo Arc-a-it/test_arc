@@ -1,0 +1,16 @@
+{
+  "name": "risky-microservices-concerns",
+  "version": "1.0.0",
+  "description": "Microservices with architectural concerns that should trigger RISKY decision",
+  "private": true,
+  "workspaces": [
+    "services/*"
+  ],
+  "scripts": {
+    "start": "lerna run start --parallel",
+    "test": "lerna run test"
+  },
+  "devDependencies": {
+    "lerna": "^7.0.0"
+  }
+}

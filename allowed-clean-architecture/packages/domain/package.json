@@ -1,0 +1,7 @@
+{
+  "name": "@company/domain",
+  "version": "1.0.0",
+  "description": "Domain entities and business logic",
+  "main": "index.js",
+  "dependencies": {}
+}

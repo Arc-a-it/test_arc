@@ -1,0 +1,10 @@
+{
+  "name": "@company/infrastructure",
+  "version": "1.0.0",
+  "description": "Infrastructure implementations (database, messaging, etc.)",
+  "main": "index.js",
+  "dependencies": {
+    "@company/domain": "file:../domain",
+    "mongoose": "^7.0.0"
+  }
+}

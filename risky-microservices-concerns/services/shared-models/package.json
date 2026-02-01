@@ -1,0 +1,6 @@
+{
+  "name": "shared-models",
+  "version": "1.0.0",
+  "description": "Shared models between microservices (creates tight coupling)",
+  "main": "index.js"
+}
