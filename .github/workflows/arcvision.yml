@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install ArcVision CLI
-        run: npm install -g @arcvision/cli
+        run: npm install -g arcvision
 
       - name: Run ArcVision
         run: arcvision evaluate
