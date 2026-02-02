@@ -32,7 +32,7 @@ jobs:
     
     # Manual token configuration
     env:
-      ARCVISION_TOKEN: "YOUR_TOKEN_HERE"
+      ARCVISION_TOKEN: "d7c2db904d28fbecbcc6f4f8a75b1830a9319c3d040492b3"
     
     # Only run on non-forked repositories for security
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
