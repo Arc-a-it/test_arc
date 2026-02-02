@@ -72,7 +72,7 @@ jobs:
         run: |
           echo "🏗️  Step 1: Generating comprehensive architecture map..."
           echo "This creates the foundational context for all subsequent analysis"
-          arcvision scan . --verbose
+          arcvision scan .
           echo "✅ Architecture map generated successfully"
           echo "📁 Generated files:"
           ls -la arcvision_context/
@@ -109,7 +109,7 @@ jobs:
           find arcvision_context/ -name "*.json" -exec basename {} \;
           
           # Perform the upload
-          arcvision scan . --upload --verbose
+          arcvision scan . --upload
           
           # Verify upload completion
           echo "✅ Analysis uploaded to dashboard"
@@ -154,17 +154,17 @@ jobs:
           echo "Evaluating changes against architectural invariants for compliance"
           echo ""
           echo "Running basic evaluation:"
-          arcvision evaluate . --verbose
+          arcvision evaluate .
           echo ""
           echo "Running with fail-on-blocked for CI/CD enforcement:"
-          arcvision evaluate . --fail-on-blocked --verbose || echo "⚠️  Some architectural violations detected (this is expected in demonstration)"
+          arcvision evaluate . --fail-on-blocked || echo "⚠️  Some architectural violations detected (this is expected in demonstration)"
           echo ""
           echo "Simulating changes to critical files:"
           find . -name "*.js" -o -name "*.ts" | head -5 | xargs | sed 's/ /,/g' > /tmp/simulate_files.txt
           if [ -s /tmp/simulate_files.txt ]; then
             SIM_FILES=$(cat /tmp/simulate_files.txt)
             echo "Simulating changes to: $SIM_FILES"
-            arcvision evaluate . --simulate-changes "$SIM_FILES" --verbose || true
+            arcvision evaluate . --simulate-changes "$SIM_FILES" || true
           fi
           echo "✅ ACIG evaluation completed"
 
@@ -174,10 +174,10 @@ jobs:
           echo "Tracking architectural decisions and governance history"
           echo ""
           echo "Ledger Statistics:"
-          arcvision ledger --stats --verbose || echo "No ledger data available yet"
+          arcvision ledger --stats || echo "No ledger data available yet"
           echo ""
           echo "Recent Blocked Events:"
-          arcvision ledger --recent-blocks --verbose || echo "No recent blocked events"
+          arcvision ledger --recent-blocks || echo "No recent blocked events"
           echo ""
           echo "Exporting ledger for audit purposes:"
           arcvision ledger --export json > architecture-audit-report.json || echo "Ledger export completed"
@@ -192,14 +192,14 @@ jobs:
           if [ -f "arcvision_context/arcvision.context.json" ]; then
             echo "Creating snapshot for comparison..."
             cp arcvision_context/arcvision.context.json arcvision_context/previous.context.json
-            arcvision scan . --verbose
+            arcvision scan .
             if [ -f "arcvision_context/previous.context.json" ]; then
               echo "Generating architectural diff:"
-              arcvision diff arcvision_context/previous.context.json arcvision_context/arcvision.context.json --verbose || true
+              arcvision diff arcvision_context/previous.context.json arcvision_context/arcvision.context.json || true
             fi
           else
             echo "First run - generating baseline architecture context"
-            arcvision scan . --verbose
+            arcvision scan .
           fi
           echo "✅ Advanced analysis completed"
 
