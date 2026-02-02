@@ -30,9 +30,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Comprehensive Architectural Governance
     
-    # Manual token configuration
+    # ONLY SET TOKEN HERE IF YOU WANT TO HARDCODE IT
+    # Remove this env block if using secrets
     env:
-      ARCVISION_TOKEN: "d7c2db904d28fbecbcc6f4f8a75b1830a9319c3d040492b3"
+      ARCVISION_TOKEN: "d7c2db904d28fbecbcc6f4f8a75b1830a9319c3d040492b3"  # <-- PUT YOUR REAL TOKEN HERE
     
     # Only run on non-forked repositories for security
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
@@ -80,21 +81,28 @@ jobs:
       - name: Dashboard Integration
         run: |
           echo "🔗 Step 2: Dashboard integration..."
-          # MANUAL TOKEN INSERTION REQUIRED
-          # Replace YOUR_TOKEN_HERE with your actual ArcVision project token
-          ARCVISION_TOKEN="YOUR_TOKEN_HERE"
           
-          if [ "$ARCVISION_TOKEN" != "YOUR_TOKEN_HERE" ] && [ -n "$ARCVISION_TOKEN" ]; then
+          # Check if token is set and not the placeholder
+          if [ -n "$ARCVISION_TOKEN" ] && [ "$ARCVISION_TOKEN" != "YOUR_ACTUAL_TOKEN_HERE" ]; then
+            echo "✅ Token detected: ${ARCVISION_TOKEN:0:10}..."
             echo "Authenticating with dashboard..."
+            
+            # Set the token for arcvision CLI
+            export ARCVISION_TOKEN="$ARCVISION_TOKEN"
+            
+            # Link using the token from environment
             arcvision link "$ARCVISION_TOKEN"
+            
             echo "✅ Dashboard authentication successful"
+            echo "Token linked successfully"
           else
+            echo "⚠️  No valid token found or using placeholder"
             echo "Running local analysis only"
-            echo "To enable dashboard integration, replace YOUR_TOKEN_HERE with your actual token"
+            echo "To enable dashboard integration, replace YOUR_ACTUAL_TOKEN_HERE with your actual token in the env section above"
           fi
 
       - name: Upload Analysis to Dashboard
-        if: env.ARCVISION_TOKEN != 'YOUR_TOKEN_HERE' && env.ARCVISION_TOKEN != ''
+        if: env.ARCVISION_TOKEN != 'YOUR_ACTUAL_TOKEN_HERE' && env.ARCVISION_TOKEN != ''
         run: |
           echo "☁️  Uploading analysis to dashboard..."
           echo "🔍 Verifying arcvision_context directory contents before upload:"
@@ -108,17 +116,20 @@ jobs:
           echo "📄 Files to be uploaded:"
           find arcvision_context/ -name "*.json" -exec basename {} \;
           
-          # Perform the upload
+          # Export token for this step
+          export ARCVISION_TOKEN="${{ env.ARCVISION_TOKEN }}"
+          
+          echo "Token available: ${#ARCVISION_TOKEN} characters"
+          
+          # Perform the upload with explicit token
           arcvision scan . --upload
           
           # Verify upload completion
           echo "✅ Analysis uploaded to dashboard"
           echo "✅ All $CONTEXT_FILES_COUNT context files should now be available in the dashboard"
-        env:
-          ARCVISION_TOKEN: ${{ env.ARCVISION_TOKEN }}
 
       - name: Verify Upload Completeness
-        if: env.ARCVISION_TOKEN != 'YOUR_TOKEN_HERE' && env.ARCVISION_TOKEN != ''
+        if: env.ARCVISION_TOKEN != 'YOUR_ACTUAL_TOKEN_HERE' && env.ARCVISION_TOKEN != ''
         run: |
           echo "🔍 Verifying upload completeness..."
           
@@ -272,10 +283,10 @@ jobs:
           EOF
           
           # Add dashboard status
-          if [ "$ARCVISION_TOKEN" != "YOUR_TOKEN_HERE" ] && [ -n "$ARCVISION_TOKEN" ]; then
+          if [ -n "$ARCVISION_TOKEN" ] && [ "$ARCVISION_TOKEN" != "YOUR_ACTUAL_TOKEN_HERE" ]; then
             echo "Dashboard: ✅ Connected" >> arcvision-enterprise-report.md
           else
-            echo "Dashboard: ⚠️ Not configured (replace YOUR_TOKEN_HERE with actual token)" >> arcvision-enterprise-report.md
+            echo "Dashboard: ⚠️ Not configured (replace YOUR_ACTUAL_TOKEN_HERE with actual token)" >> arcvision-enterprise-report.md
           fi
           echo "✅ Enterprise analysis report generated"
 
@@ -330,6 +341,17 @@ jobs:
           echo "Current directory: $(pwd)"
           echo "Directory contents:"
           ls -la
+          echo ""
+          echo "Token status:"
+          if [ -n "$ARCVISION_TOKEN" ]; then
+            if [ "$ARCVISION_TOKEN" = "YOUR_ACTUAL_TOKEN_HERE" ]; then
+              echo "❌ Token not configured - using placeholder"
+            else
+              echo "✅ Token configured: ${ARCVISION_TOKEN:0:10}..."
+            fi
+          else
+            echo "❌ Token not set"
+          fi
           echo ""
           echo "Recent system logs:"
           dmesg | tail -20 || echo "No kernel messages available"
