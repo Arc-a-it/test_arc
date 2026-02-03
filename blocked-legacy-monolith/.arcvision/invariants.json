@@ -1,16 +1,44 @@
 [
   {
-    "id": "global-state-test",
-    "system": "test",
-    "description": "Test invariant for global state detection",
+    "id": "global-state-detection",
+    "system": "security",
+    "description": "Detect global mutable state patterns",
     "severity": "block",
-    "scope": {
-      "files": ["**/*.js"]
-    },
+    "scope": { "files": ["**/*.js", "**/*.ts"] },
     "rule": {
       "type": "pattern",
-      "pattern": "GLOBAL_",
+      "condition": {
+        "pattern": "GLOBAL_|let GLOBAL_|var GLOBAL_"
+      },
       "message": "Global state violation detected"
+    }
+  },
+  {
+    "id": "hardcoded-secrets-detection",
+    "system": "security",
+    "description": "Detect hardcoded secrets and passwords",
+    "severity": "block",
+    "scope": { "files": ["**/*.js", "**/*.ts"] },
+    "rule": {
+      "type": "pattern",
+      "condition": {
+        "pattern": "password|secret|api.*key|jwt.*key"
+      },
+      "message": "Hardcoded secret detected"
+    }
+  },
+  {
+    "id": "database-access-violation",
+    "system": "architecture",
+    "description": "Detect improper database access patterns",
+    "severity": "block",
+    "scope": { "files": ["**/*.js", "**/*.ts"] },
+    "rule": {
+      "type": "pattern",
+      "condition": {
+        "pattern": "createConnection|mysql\\.connect|DB_CONNECTION"
+      },
+      "message": "Improper database access pattern detected"
     }
   }
 ]

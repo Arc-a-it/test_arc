@@ -132,4 +132,12 @@ app.use((req, res, next) => {
   next();
 });
 
-module.exports = app;
+// Export both the app and individual route handlers for better scanning
+const startServer = () => {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`User service listening on port ${PORT}`);
+  });
+};
+
+module.exports = { app, startServer };

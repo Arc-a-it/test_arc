@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-02-02T14:30:31.323Z",
+  "generated_at": "2026-02-03T05:17:56.767Z",
   "system": {
     "name": "risky-microservices-concerns",
     "root_path": "C:\\Users\\AHMAD RAZA\\Downloads\\ArcVision\\test_repos\\risky-microservices-concerns",
@@ -61,7 +61,7 @@
       "dependencies": [],
       "blast_radius": 0,
       "layer": "logic",
-      "criticality": 0
+      "criticality": 1
     },
     {
       "id": "f103cadc18e617a8",
@@ -75,9 +75,29 @@
     }
   ],
   "edges": [],
-  "symbols": [],
+  "symbols": [
+    {
+      "id": "services/user-service/src/server.js::startServer",
+      "name": "startServer",
+      "kind": "function",
+      "fileId": "services/user-service/src/server.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 136,
+          "column": 6,
+          "index": 4858
+        },
+        "end": {
+          "line": 141,
+          "column": 1,
+          "index": 5019
+        }
+      }
+    }
+  ],
   "metrics": {
-    "files_with_functions": 0,
+    "files_with_functions": 1,
     "files_with_high_blast_radius": 0,
     "total_calls": 0,
     "total_dependencies": 0,
@@ -125,8 +145,8 @@
   ],
   "source": {
     "repo": "https://github.com/Arc-a-it/test_arc",
-    "commit": "836f7e531aa374f54ac154838f9958362c7935f5",
-    "generated_at": "2026-02-02",
+    "commit": "8e0fa367dfe19c15888588e82bad92dd2ff86a40",
+    "generated_at": "2026-02-03",
     "arcvision_version": "0.1.0"
   },
   "structural_layers": {
@@ -290,8 +310,8 @@
   "authoritative_context": {
     "metadata": {
       "canonical": true,
-      "generated_at": "2026-02-02T14:30:31.194Z",
-      "source_commit": "836f7e531aa374f54ac154838f9958362c7935f5",
+      "generated_at": "2026-02-03T05:17:56.622Z",
+      "source_commit": "8e0fa367dfe19c15888588e82bad92dd2ff86a40",
       "arcvision_version": "0.1.0",
       "schema_version": "1.0.0",
       "trust_level": "high"
@@ -364,11 +384,11 @@
       "validation_status": "validated"
     },
     "integrity": {
-      "content_hash": "8efde81dbd8702f2272194214d610e3c0ba7abb402dceb443e2325b123107659",
-      "generation_signature": "bae2b150117dc0af8bc18b1f0ad3cfacf4d4540c11eca2b144dfe70f8dd83419"
+      "content_hash": "c388e2efa46c00319cbfaf32429dff520fd75e0fc4f9d85c3bc5eff77a95d0b6",
+      "generation_signature": "a5f47800875c676ac18b4652443e392bd3e566113c1a960e0561a49708ca7c75"
     }
   },
   "integrity": {
-    "sha256": "cd00be6a9c6f2029aa16d3fdb1b209dfa4c08894533a93a88d351379f80679d9"
+    "sha256": "330e3f810bb730c575e1bbe06d9cc2925f2de9ece46e8dddebaa75484dbf96fe"
   }
 }

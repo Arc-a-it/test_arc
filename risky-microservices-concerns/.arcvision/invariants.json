@@ -1,5 +1,30 @@
-{
-  "version": "1.0",
-  "project_specific_invariants": [],
-  "generated_at": "2026-01-25T14:04:02.392Z"
-}
+[
+  {
+    "id": "resource-exhaustion-risk",
+    "system": "performance",
+    "description": "Detect resource exhaustion patterns",
+    "severity": "risk",
+    "scope": { "files": ["**/*.js", "**/*.ts"] },
+    "rule": {
+      "type": "pattern",
+      "condition": {
+        "pattern": "for.*100|CONNECTION_POOL.*set"
+      },
+      "message": "Resource exhaustion risk detected"
+    }
+  },
+  {
+    "id": "missing-resilience-patterns",
+    "system": "reliability",
+    "description": "Detect missing resilience patterns",
+    "severity": "risk",
+    "scope": { "files": ["**/*.js", "**/*.ts"] },
+    "rule": {
+      "type": "pattern",
+      "condition": {
+        "pattern": "axios\\.get|axios\\.post"
+      },
+      "message": "Missing resilience patterns detected"
+    }
+  }
+]

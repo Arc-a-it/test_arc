@@ -77,6 +77,130 @@
       "blast_radius": 0,
       "affected_nodes": 0,
       "override": false
+    },
+    {
+      "event_id": "evt_1770095774920_81buwu70q",
+      "timestamp": "2026-02-03T05:16:14.920Z",
+      "decision": "BLOCKED",
+      "commit": "HEAD",
+      "branch": "unknown",
+      "author": "unknown",
+      "violations": [
+        {
+          "id": "global-state-detection",
+          "description": "Detect global mutable state patterns",
+          "system": "security",
+          "severity": "block"
+        },
+        {
+          "id": "hardcoded-secrets-detection",
+          "description": "Detect hardcoded secrets and passwords",
+          "system": "security",
+          "severity": "block"
+        },
+        {
+          "id": "database-access-violation",
+          "description": "Detect improper database access patterns",
+          "system": "architecture",
+          "severity": "block"
+        }
+      ],
+      "blast_radius": 0,
+      "affected_nodes": 0,
+      "override": false
+    },
+    {
+      "event_id": "evt_1770095861221_vz76d0gri",
+      "timestamp": "2026-02-03T05:17:41.221Z",
+      "decision": "BLOCKED",
+      "commit": "HEAD",
+      "branch": "unknown",
+      "author": "unknown",
+      "violations": [
+        {
+          "id": "global-state-detection",
+          "description": "Detect global mutable state patterns",
+          "system": "security",
+          "severity": "block"
+        },
+        {
+          "id": "hardcoded-secrets-detection",
+          "description": "Detect hardcoded secrets and passwords",
+          "system": "security",
+          "severity": "block"
+        },
+        {
+          "id": "database-access-violation",
+          "description": "Detect improper database access patterns",
+          "system": "architecture",
+          "severity": "block"
+        }
+      ],
+      "blast_radius": 0,
+      "affected_nodes": 0,
+      "override": false
+    },
+    {
+      "event_id": "evt_1770097774163_m3akhuei1",
+      "timestamp": "2026-02-03T05:49:34.163Z",
+      "decision": "BLOCKED",
+      "commit": "HEAD",
+      "branch": "unknown",
+      "author": "unknown",
+      "violations": [
+        {
+          "id": "global-state-detection",
+          "description": "Detect global mutable state patterns",
+          "system": "security",
+          "severity": "block"
+        },
+        {
+          "id": "hardcoded-secrets-detection",
+          "description": "Detect hardcoded secrets and passwords",
+          "system": "security",
+          "severity": "block"
+        },
+        {
+          "id": "database-access-violation",
+          "description": "Detect improper database access patterns",
+          "system": "architecture",
+          "severity": "block"
+        }
+      ],
+      "blast_radius": 0,
+      "affected_nodes": 0,
+      "override": false
+    },
+    {
+      "event_id": "evt_1770097785230_bs2ar0cyl",
+      "timestamp": "2026-02-03T05:49:45.230Z",
+      "decision": "BLOCKED",
+      "commit": "HEAD",
+      "branch": "unknown",
+      "author": "unknown",
+      "violations": [
+        {
+          "id": "global-state-detection",
+          "description": "Detect global mutable state patterns",
+          "system": "security",
+          "severity": "block"
+        },
+        {
+          "id": "hardcoded-secrets-detection",
+          "description": "Detect hardcoded secrets and passwords",
+          "system": "security",
+          "severity": "block"
+        },
+        {
+          "id": "database-access-violation",
+          "description": "Detect improper database access patterns",
+          "system": "architecture",
+          "severity": "block"
+        }
+      ],
+      "blast_radius": 0,
+      "affected_nodes": 0,
+      "override": false
     }
   ]
 }
