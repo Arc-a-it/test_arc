@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-02-03T02:19:38.863Z",
+  "generated_at": "2026-02-03T04:27:02.565Z",
   "system": {
     "name": "blocked-legacy-monolith",
     "root_path": "C:\\Users\\AHMAD RAZA\\Downloads\\ArcVision\\test_repos\\blocked-legacy-monolith",
@@ -138,14 +138,14 @@
       "exported": false,
       "loc": {
         "start": {
-          "line": 4,
+          "line": 10,
           "column": 0,
-          "index": 104
+          "index": 338
         },
         "end": {
-          "line": 10,
+          "line": 20,
           "column": 1,
-          "index": 341
+          "index": 749
         }
       }
     },
@@ -157,14 +157,33 @@
       "exported": false,
       "loc": {
         "start": {
-          "line": 15,
+          "line": 28,
           "column": 0,
-          "index": 449
+          "index": 949
         },
         "end": {
-          "line": 29,
+          "line": 45,
           "column": 1,
-          "index": 817
+          "index": 1416
+        }
+      }
+    },
+    {
+      "id": "src/emailService.js::processEmailTemplate",
+      "name": "processEmailTemplate",
+      "kind": "function",
+      "fileId": "src/emailService.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 48,
+          "column": 0,
+          "index": 1459
+        },
+        "end": {
+          "line": 57,
+          "column": 1,
+          "index": 1826
         }
       }
     },
@@ -214,14 +233,14 @@
       "exported": false,
       "loc": {
         "start": {
-          "line": 4,
+          "line": 13,
           "column": 0,
-          "index": 111
+          "index": 458
         },
         "end": {
-          "line": 28,
+          "line": 57,
           "column": 1,
-          "index": 914
+          "index": 1917
         }
       }
     },
@@ -233,14 +252,33 @@
       "exported": false,
       "loc": {
         "start": {
-          "line": 31,
+          "line": 60,
           "column": 0,
-          "index": 983
+          "index": 1986
         },
         "end": {
-          "line": 52,
+          "line": 81,
           "column": 1,
-          "index": 1514
+          "index": 2517
+        }
+      }
+    },
+    {
+      "id": "src/paymentProcessor.js::logPaymentAudit",
+      "name": "logPaymentAudit",
+      "kind": "function",
+      "fileId": "src/paymentProcessor.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 84,
+          "column": 0,
+          "index": 2567
+        },
+        "end": {
+          "line": 89,
+          "column": 1,
+          "index": 2860
         }
       }
     }
@@ -294,7 +332,7 @@
   ],
   "source": {
     "repo": "https://github.com/Arc-a-it/test_arc",
-    "commit": "836f7e531aa374f54ac154838f9958362c7935f5",
+    "commit": "dfa1bd8f14e51698c60488433ba8bbeecc1ebabb",
     "generated_at": "2026-02-03",
     "arcvision_version": "0.1.0"
   },
@@ -474,8 +512,8 @@
   "authoritative_context": {
     "metadata": {
       "canonical": true,
-      "generated_at": "2026-02-03T02:19:38.739Z",
-      "source_commit": "836f7e531aa374f54ac154838f9958362c7935f5",
+      "generated_at": "2026-02-03T04:27:02.452Z",
+      "source_commit": "dfa1bd8f14e51698c60488433ba8bbeecc1ebabb",
       "arcvision_version": "0.1.0",
       "schema_version": "1.0.0",
       "trust_level": "high"
@@ -571,11 +609,11 @@
       "validation_status": "validated"
     },
     "integrity": {
-      "content_hash": "4f77ad18e3940fe2bf0e45654c5dd810a8f4fbe9601952f0e02c408e479853c3",
-      "generation_signature": "1757981f131a498b3324e88779d5f324cb46a54a8073b9027ab0cc5a3e7bc49a"
+      "content_hash": "f28c79727352633e6ee34d3270b4e2c091fc02aa716032ff0f4791ccb1ca5107",
+      "generation_signature": "5c69bbd041605b4874006a18352f3bb9c4c67da2356e704d5d8698022fd9a212"
     }
   },
   "integrity": {
-    "sha256": "76c4e8ffa85f491c44ef19e479a7a3cf7ef80e689285fd008924afb3b475b72e"
+    "sha256": "e63ef91d0b42554fdd304ddd879ea7d1f69a0ce1fd5b3c3b0f370d7bacff8e33"
   }
 }
