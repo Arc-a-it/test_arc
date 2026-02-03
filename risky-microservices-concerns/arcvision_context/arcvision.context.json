@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-01-25T14:04:06.175Z",
+  "generated_at": "2026-02-02T14:30:31.323Z",
   "system": {
     "name": "risky-microservices-concerns",
     "root_path": "C:\\Users\\AHMAD RAZA\\Downloads\\ArcVision\\test_repos\\risky-microservices-concerns",
@@ -124,9 +124,9 @@
     "ArcVision prioritizes execution-relevant structure over exhaustive file indexing. Non-runtime files are represented as envelope metadata unless they directly affect execution."
   ],
   "source": {
-    "repo": "https://github.com/leafmintaiAR/ArcVision",
-    "commit": "eb048d045589040ef0c8939c20267ca67e67c77c",
-    "generated_at": "2026-01-25",
+    "repo": "https://github.com/Arc-a-it/test_arc",
+    "commit": "836f7e531aa374f54ac154838f9958362c7935f5",
+    "generated_at": "2026-02-02",
     "arcvision_version": "0.1.0"
   },
   "structural_layers": {
@@ -136,7 +136,7 @@
       "project_characteristics": {
         "has_package_json": true,
         "has_src_directory": false,
-        "total_files": 6,
+        "total_files": 8,
         "javascript_files": 2,
         "typescript_files": 0,
         "lua_files": 0
@@ -168,12 +168,12 @@
     },
     "project_metadata": {
       "size_category": "small",
-      "file_count": 6,
+      "file_count": 8,
       "language_mix": {
         "javascript": 2,
         "typescript": 0,
         "lua": 0,
-        "config": 4
+        "config": 5
       },
       "has_package_management": true,
       "has_standard_structure": false,
@@ -196,7 +196,12 @@
         "role": "dependency_manifest"
       }
     ],
-    "documentation": [],
+    "documentation": [
+      {
+        "path": "arcvision_context\\README.md",
+        "role": "system_overview"
+      }
+    ],
     "build_tools": []
   },
   "authority_cores": [],
@@ -285,8 +290,8 @@
   "authoritative_context": {
     "metadata": {
       "canonical": true,
-      "generated_at": "2026-01-25T14:04:05.942Z",
-      "source_commit": "eb048d045589040ef0c8939c20267ca67e67c77c",
+      "generated_at": "2026-02-02T14:30:31.194Z",
+      "source_commit": "836f7e531aa374f54ac154838f9958362c7935f5",
       "arcvision_version": "0.1.0",
       "schema_version": "1.0.0",
       "trust_level": "high"
@@ -359,11 +364,11 @@
       "validation_status": "validated"
     },
     "integrity": {
-      "content_hash": "7898431e00f54c90863c8e88caf88f122eed3c31e61538328c6022bb149e605d",
-      "generation_signature": "4e9de9246994235e9eede0bb88297cda4957f9b601a1b23ef6de9a380ddca306"
+      "content_hash": "8efde81dbd8702f2272194214d610e3c0ba7abb402dceb443e2325b123107659",
+      "generation_signature": "bae2b150117dc0af8bc18b1f0ad3cfacf4d4540c11eca2b144dfe70f8dd83419"
     }
   },
   "integrity": {
-    "sha256": "e6ca4842605a3d63793dbb3b0b348d709b66a86982a75692469896fcd5b3e0fa"
+    "sha256": "cd00be6a9c6f2029aa16d3fdb1b209dfa4c08894533a93a88d351379f80679d9"
   }
 }

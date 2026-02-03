@@ -52,6 +52,31 @@
       "blast_radius": 0,
       "affected_nodes": 0,
       "override": false
+    },
+    {
+      "event_id": "evt_1770042505139_82hnww7ov",
+      "timestamp": "2026-02-02T14:28:25.139Z",
+      "decision": "BLOCKED",
+      "commit": "HEAD",
+      "branch": "unknown",
+      "author": "unknown",
+      "violations": [
+        {
+          "id": "no-circular-dependencies",
+          "description": "Circular dependencies between modules are forbidden",
+          "system": "modularity",
+          "severity": "block"
+        },
+        {
+          "id": "no-reverse-circular",
+          "description": "Reverse circular dependencies are forbidden",
+          "system": "modularity",
+          "severity": "block"
+        }
+      ],
+      "blast_radius": 0,
+      "affected_nodes": 0,
+      "override": false
     }
   ]
 }

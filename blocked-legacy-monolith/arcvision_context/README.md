@@ -40,9 +40,9 @@ Use this artifact when:
 
 ## Determinism & Trust
 
-- Generated from commit: eb048d045589040ef0c8939c20267ca67e67c77c
-- Generation timestamp: 2026-01-26T04:27:04.589Z
-- Tool version: 0.2.20
+- Generated from commit: 836f7e531aa374f54ac154838f9958362c7935f5
+- Generation timestamp: 2026-02-03T02:19:39.608Z
+- Tool version: 0.2.21
 - Deterministic: same input → same output
 - Explicit assumptions listed inside the artifact
 
@@ -53,11 +53,11 @@ If this artifact conflicts with human memory, **trust the artifact**.
 The following files have the highest blast radius and represent critical structural hubs in the system:
 
 - **src/emailService.js**
-  - Blast Radius: 2 files (33.33% of codebase)
+  - Blast Radius: 2 files (28.57% of codebase)
   - Risk: Changes here may silently propagate across the system.
 
 - **src/paymentProcessor.js**
-  - Blast Radius: 2 files (33.33% of codebase)
+  - Blast Radius: 2 files (28.57% of codebase)
   - Risk: Acts as a coordination layer between components.
 
 - **arcvision_context/architecture.authority.ledger.json**

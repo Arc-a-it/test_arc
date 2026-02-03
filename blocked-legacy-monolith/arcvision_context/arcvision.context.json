@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-01-26T04:27:03.278Z",
+  "generated_at": "2026-02-03T02:19:38.863Z",
   "system": {
     "name": "blocked-legacy-monolith",
     "root_path": "C:\\Users\\AHMAD RAZA\\Downloads\\ArcVision\\test_repos\\blocked-legacy-monolith",
@@ -21,6 +21,16 @@
       "dependencies": [],
       "blast_radius": 0,
       "layer": "state",
+      "criticality": 0
+    },
+    {
+      "id": "38b392d62dbc8132",
+      "type": "file",
+      "path": "test-violation.js",
+      "role": "module",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "generic",
       "criticality": 0
     },
     {
@@ -166,14 +176,14 @@
       "exported": false,
       "loc": {
         "start": {
-          "line": 19,
+          "line": 31,
           "column": 0,
-          "index": 417
+          "index": 786
         },
         "end": {
-          "line": 21,
+          "line": 38,
           "column": 1,
-          "index": 515
+          "index": 1156
         }
       }
     },
@@ -185,14 +195,14 @@
       "exported": false,
       "loc": {
         "start": {
-          "line": 46,
+          "line": 74,
           "column": 0,
-          "index": 1169
+          "index": 2214
         },
         "end": {
-          "line": 57,
+          "line": 85,
           "column": 1,
-          "index": 1530
+          "index": 2575
         }
       }
     },
@@ -242,9 +252,9 @@
     "total_dependencies": 6,
     "total_depends_on": 0,
     "total_edges": 6,
-    "total_files": 6,
+    "total_files": 7,
     "total_imports": 8,
-    "total_nodes": 6,
+    "total_nodes": 7,
     "total_owns": 0
   },
   "contextSurface": [
@@ -283,9 +293,9 @@
     "ArcVision prioritizes execution-relevant structure over exhaustive file indexing. Non-runtime files are represented as envelope metadata unless they directly affect execution."
   ],
   "source": {
-    "repo": "https://github.com/leafmintaiAR/ArcVision",
-    "commit": "eb048d045589040ef0c8939c20267ca67e67c77c",
-    "generated_at": "2026-01-26",
+    "repo": "https://github.com/Arc-a-it/test_arc",
+    "commit": "836f7e531aa374f54ac154838f9958362c7935f5",
+    "generated_at": "2026-02-03",
     "arcvision_version": "0.1.0"
   },
   "structural_layers": {
@@ -295,8 +305,8 @@
       "project_characteristics": {
         "has_package_json": true,
         "has_src_directory": true,
-        "total_files": 8,
-        "javascript_files": 3,
+        "total_files": 9,
+        "javascript_files": 4,
         "typescript_files": 0,
         "lua_files": 0
       }
@@ -327,9 +337,9 @@
     },
     "project_metadata": {
       "size_category": "small",
-      "file_count": 8,
+      "file_count": 9,
       "language_mix": {
-        "javascript": 3,
+        "javascript": 4,
         "typescript": 0,
         "lua": 0,
         "config": 4
@@ -381,7 +391,7 @@
   ],
   "hidden_coupling": [],
   "completeness_metrics": {
-    "total_files_analyzed": 6,
+    "total_files_analyzed": 7,
     "code_files": 0,
     "configuration_files": 0,
     "documentation_files": 0,
@@ -395,7 +405,7 @@
       "boundary_violations": []
     },
     "generic": {
-      "files": 3,
+      "files": 4,
       "authority_cores": [],
       "boundary_violations": []
     },
@@ -464,8 +474,8 @@
   "authoritative_context": {
     "metadata": {
       "canonical": true,
-      "generated_at": "2026-01-26T04:27:03.055Z",
-      "source_commit": "eb048d045589040ef0c8939c20267ca67e67c77c",
+      "generated_at": "2026-02-03T02:19:38.739Z",
+      "source_commit": "836f7e531aa374f54ac154838f9958362c7935f5",
       "arcvision_version": "0.1.0",
       "schema_version": "1.0.0",
       "trust_level": "high"
@@ -481,8 +491,8 @@
         "authorityPattern": "schema_driven_authority"
       },
       "structural_complexity": {
-        "cyclomatic_complexity": 6,
-        "coupling_degree": 1.6666666666666667,
+        "cyclomatic_complexity": 5,
+        "coupling_degree": 1.4285714285714286,
         "cohesion_measure": 0.7,
         "overall_complexity": "medium"
       }
@@ -521,7 +531,7 @@
           "boundary_violations": []
         },
         "generic": {
-          "files": 3,
+          "files": 4,
           "authority_cores": [],
           "boundary_violations": []
         },
@@ -542,7 +552,7 @@
     },
     "reliability_indicators": {
       "analysis_coverage": {
-        "total_files_analyzed": 6,
+        "total_files_analyzed": 7,
         "code_files": 0,
         "configuration_files": 0,
         "documentation_files": 0,
@@ -561,11 +571,11 @@
       "validation_status": "validated"
     },
     "integrity": {
-      "content_hash": "03cda8edfc054003fa08b0423dcd4b011207fafc8ca8602c6bddd89e203ddf74",
-      "generation_signature": "6e94c5449bd6975901882de102e344d7f5f126d4bc0e0f98db79eba45248c18d"
+      "content_hash": "4f77ad18e3940fe2bf0e45654c5dd810a8f4fbe9601952f0e02c408e479853c3",
+      "generation_signature": "1757981f131a498b3324e88779d5f324cb46a54a8073b9027ab0cc5a3e7bc49a"
     }
   },
   "integrity": {
-    "sha256": "7a9d8c45fa8f600498fe85d3b31b3381d5aa5a2b90e712a95f2e14e9b5d27059"
+    "sha256": "76c4e8ffa85f491c44ef19e479a7a3cf7ef80e689285fd008924afb3b475b72e"
   }
 }
