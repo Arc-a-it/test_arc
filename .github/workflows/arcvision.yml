@@ -33,7 +33,7 @@ jobs:
     # ONLY SET TOKEN HERE IF YOU WANT TO HARDCODE IT
     # Remove this env block if using secrets
     env:
-      ARCVISION_TOKEN: "d7c2db904d28fbecbcc6f4f8a75b1830a9319c3d040492b3"  # <-- PUT YOUR REAL TOKEN HERE
+      ARCVISION_TOKEN: "01d6a67ff2b97f79ce4f9e6b3d98fa636aab71568d5a90db"  # <-- PUT YOUR REAL TOKEN HERE
     
     # Only run on non-forked repositories for security
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
@@ -204,14 +204,14 @@ jobs:
           arcvision evaluate .
           echo ""
           echo "Running with fail-on-blocked for CI/CD enforcement:"
-          arcvision evaluate . --fail-on-blocked || echo "⚠️  Some architectural violations detected (this is expected in demonstration)"
+          arcvision evaluate . --fail-on-blocked
           echo ""
           echo "Simulating changes to critical files:"
           find . -name "*.js" -o -name "*.ts" | head -5 | xargs | sed 's/ /,/g' > /tmp/simulate_files.txt
           if [ -s /tmp/simulate_files.txt ]; then
             SIM_FILES=$(cat /tmp/simulate_files.txt)
             echo "Simulating changes to: $SIM_FILES"
-            arcvision evaluate . --simulate-changes "$SIM_FILES" || true
+            arcvision evaluate . --simulate-changes "$SIM_FILES"
           fi
           echo "✅ ACIG evaluation completed"
 
