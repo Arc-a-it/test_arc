@@ -159,6 +159,42 @@ jobs:
           echo "📁 Complete arcvision_context directory listing:"
           find arcvision_context/ -type f -name "*.json" -exec ls -lh {} \;
 
+      - name: Setup Test Invariants
+        run: |
+          echo \"🔧 Setting up test invariants for violation detection...\"
+          mkdir -p .arcvision
+          cat > .arcvision/invariants.json << 'EOF'
+          [
+            {
+              \"id\": \"global-state-detection\",
+              \"system\": \"security\",
+              \"description\": \"Detect global mutable state patterns\",
+              \"severity\": \"block\",
+              \"scope\": { \"files\": [\"**/*.js\", \"**/*.ts\"] },
+              \"rule\": {
+                \"type\": \"pattern\",
+                \"pattern\": \"GLOBAL_|let GLOBAL_|var GLOBAL_\",
+                \"message\": \"Global state violation detected\"
+              }
+            },
+            {
+              \"id\": \"hardcoded-secrets-detection\",
+              \"system\": \"security\",
+              \"description\": \"Detect hardcoded secrets and passwords\",
+              \"severity\": \"block\",
+              \"scope\": { \"files\": [\"**/*.js\", \"**/*.ts\"] },
+              \"rule\": {
+                \"type\": \"pattern\",
+                \"pattern\": \"password|secret|api.*key|jwt.*key\",
+                \"message\": \"Hardcoded secret detected\"
+              }
+            }
+          ]
+          EOF
+          echo \"✅ Test invariants created\"
+          echo \"Invariant content:\"
+          cat .arcvision/invariants.json
+
       - name: Authoritative Change Impact Gate (ACIG) Evaluation
         run: |
           echo "🛡️  Step 4: Running Authoritative Change Impact Gate (ACIG)..."
