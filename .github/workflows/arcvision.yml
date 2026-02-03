@@ -33,7 +33,7 @@ jobs:
     # ONLY SET TOKEN HERE IF YOU WANT TO HARDCODE IT
     # Remove this env block if using secrets
     env:
-      ARCVISION_TOKEN: "d7c2db904d28fbecbcc6f4f8a75b1830a9319c3d040492b3"  # <-- PUT YOUR REAL TOKEN HERE
+      ARCVISION_TOKEN: "2f882333d881dfd1a654dc8f15ed4f782a28512a831e9462"  # <-- PUT YOUR REAL TOKEN HERE
     
     # Only run on non-forked repositories for security
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
@@ -161,57 +161,143 @@ jobs:
 
       - name: Setup Test Invariants
         run: |
-          echo \"🔧 Setting up test invariants for violation detection...\"
+          echo "🔧 Setting up test invariants for violation detection..."
           mkdir -p .arcvision
           cat > .arcvision/invariants.json << 'EOF'
           [
             {
-              \"id\": \"global-state-detection\",
-              \"system\": \"security\",
-              \"description\": \"Detect global mutable state patterns\",
-              \"severity\": \"block\",
-              \"scope\": { \"files\": [\"**/*.js\", \"**/*.ts\"] },
-              \"rule\": {
-                \"type\": \"pattern\",
-                \"pattern\": \"GLOBAL_|let GLOBAL_|var GLOBAL_\",
-                \"message\": \"Global state violation detected\"
+              "id": "global-state-detection",
+              "system": "security",
+              "description": "Detect global mutable state patterns",
+              "severity": "block",
+              "scope": { "files": ["**/*.js", "**/*.ts"] },
+              "rule": {
+                "type": "pattern",
+                "condition": {
+                  "pattern": "GLOBAL_|let GLOBAL_|var GLOBAL_"
+                },
+                "message": "Global state violation detected"
               }
             },
             {
-              \"id\": \"hardcoded-secrets-detection\",
-              \"system\": \"security\",
-              \"description\": \"Detect hardcoded secrets and passwords\",
-              \"severity\": \"block\",
-              \"scope\": { \"files\": [\"**/*.js\", \"**/*.ts\"] },
-              \"rule\": {
-                \"type\": \"pattern\",
-                \"pattern\": \"password|secret|api.*key|jwt.*key\",
-                \"message\": \"Hardcoded secret detected\"
+              "id": "hardcoded-secrets-detection",
+              "system": "security",
+              "description": "Detect hardcoded secrets and passwords",
+              "severity": "block",
+              "scope": { "files": ["**/*.js", "**/*.ts"] },
+              "rule": {
+                "type": "pattern",
+                "condition": {
+                  "pattern": "password|secret|api.*key|jwt.*key"
+                },
+                "message": "Hardcoded secret detected"
+              }
+            },
+            {
+              "id": "database-access-violation",
+              "system": "architecture",
+              "description": "Detect improper database access patterns",
+              "severity": "block",
+              "scope": { "files": ["**/*.js", "**/*.ts"] },
+              "rule": {
+                "type": "pattern",
+                "condition": {
+                  "pattern": "createConnection|mysql\\.connect|DB_CONNECTION"
+                },
+                "message": "Improper database access pattern detected"
+              }
+            },
+            {
+              "id": "resource-exhaustion-risk",
+              "system": "performance",
+              "description": "Detect resource exhaustion patterns",
+              "severity": "risk",
+              "scope": { "files": ["**/*.js", "**/*.ts"] },
+              "rule": {
+                "type": "pattern",
+                "condition": {
+                  "pattern": "for.*100|CONNECTION_POOL.*set"
+                },
+                "message": "Resource exhaustion risk detected"
               }
             }
           ]
           EOF
-          echo \"✅ Test invariants created\"
-          echo \"Invariant content:\"
+          echo "✅ Test invariants created"
+          echo "Invariant content:"
           cat .arcvision/invariants.json
+          
+          # Verify invariants file structure
+          echo "🔍 Verifying invariants file structure..."
+          if command -v jq &> /dev/null; then
+            jq . .arcvision/invariants.json
+          else
+            python3 -m json.tool .arcvision/invariants.json || echo "Cannot validate JSON structure"
+          fi
+
+      - name: Verify Violation Patterns Exist
+        run: |
+          echo "🔍 Verifying that violation patterns actually exist in source files..."
+          echo ""
+          
+          echo "Looking for GLOBAL_ patterns:"
+          find . -name "*.js" -exec grep -l "GLOBAL_" {} \; | head -5
+          GLOBAL_COUNT=$(find . -name "*.js" -exec grep -c "GLOBAL_" {} \; | awk '{s+=$1} END {print s}')
+          echo "Total GLOBAL_ occurrences: $GLOBAL_COUNT"
+          
+          echo ""
+          echo "Looking for hardcoded secrets/passwords:"
+          find . -name "*.js" -exec grep -l -i "password\|secret\|api.*key" {} \; | head -5
+          SECRET_COUNT=$(find . -name "*.js" -exec grep -ci "password\|secret\|api.*key" {} \; | awk '{s+=$1} END {print s}')
+          echo "Total secret/password occurrences: $SECRET_COUNT"
+          
+          echo ""
+          echo "Looking for database connection patterns:"
+          find . -name "*.js" -exec grep -l -i "createConnection\|mysql.*connect\|DB_CONNECTION" {} \; | head -5
+          DB_COUNT=$(find . -name "*.js" -exec grep -ci "createConnection\|mysql.*connect\|DB_CONNECTION" {} \; | awk '{s+=$1} END {print s}')
+          echo "Total database connection occurrences: $DB_COUNT"
+          
+          echo ""
+          echo "Looking for resource exhaustion patterns:"
+          find . -name "*.js" -exec grep -l "for.*100\|CONNECTION_POOL.*set" {} \; | head -5
+          RESOURCE_COUNT=$(find . -name "*.js" -exec grep -c "for.*100\|CONNECTION_POOL.*set" {} \; | awk '{s+=$1} END {print s}')
+          echo "Total resource exhaustion pattern occurrences: $RESOURCE_COUNT"
+          
+          if [ "$GLOBAL_COUNT" -gt 0 ] || [ "$SECRET_COUNT" -gt 0 ] || [ "$DB_COUNT" -gt 0 ] || [ "$RESOURCE_COUNT" -gt 0 ]; then
+            echo "✅ Violation patterns found in source code - ACIG should detect these"
+          else
+            echo "⚠️  No violation patterns found - ACIG may not trigger violations"
+          fi
 
       - name: Authoritative Change Impact Gate (ACIG) Evaluation
         run: |
           echo "🛡️  Step 4: Running Authoritative Change Impact Gate (ACIG)..."
           echo "Evaluating changes against architectural invariants for compliance"
           echo ""
-          echo "Running basic evaluation:"
-          arcvision evaluate .
+          
+          # Verify invariants are loaded
+          echo "🔍 Checking invariant loading..."
+          if [ -f ".arcvision/invariants.json" ]; then
+            echo "✅ Invariants file found"
+            INVARIANT_COUNT=$(jq length .arcvision/invariants.json 2>/dev/null || echo "unknown")
+            echo "📊 Invariants count: $INVARIANT_COUNT"
+          else
+            echo "❌ Invariants file not found"
+          fi
+          
           echo ""
-          echo "Running with fail-on-blocked for CI/CD enforcement:"
-          arcvision evaluate . --fail-on-blocked || echo "⚠️  Some architectural violations detected (this is expected in demonstration)"
+          echo "Running basic evaluation with verbose output:"
+          arcvision evaluate . --verbose
+          echo ""
+          echo "Running with fail-on-blocked for CI/CD enforcement (should FAIL workflow):"
+          arcvision evaluate . --fail-on-blocked --verbose
           echo ""
           echo "Simulating changes to critical files:"
           find . -name "*.js" -o -name "*.ts" | head -5 | xargs | sed 's/ /,/g' > /tmp/simulate_files.txt
           if [ -s /tmp/simulate_files.txt ]; then
             SIM_FILES=$(cat /tmp/simulate_files.txt)
             echo "Simulating changes to: $SIM_FILES"
-            arcvision evaluate . --simulate-changes "$SIM_FILES" || true
+            arcvision evaluate . --simulate-changes "$SIM_FILES" --verbose
           fi
           echo "✅ ACIG evaluation completed"
 
