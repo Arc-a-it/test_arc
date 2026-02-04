@@ -33,7 +33,7 @@ jobs:
     # ONLY SET TOKEN HERE IF YOU WANT TO HARDCODE IT
     # Remove this env block if using secrets
     env:
-      ARCVISION_TOKEN: "721274f80f7e48a428f613c468799a9e5f20fcf00e793633"  # <-- PUT YOUR REAL TOKEN HERE
+      ARCVISION_TOKEN: "181c9a2335658fb77164ef4cc97e9e52045112f20c630057"  # <-- PUT YOUR REAL TOKEN HERE
     
     # Only run on non-forked repositories for security
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
