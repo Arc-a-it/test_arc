@@ -33,7 +33,7 @@ jobs:
     # ONLY SET TOKEN HERE IF YOU WANT TO HARDCODE IT
     # Remove this env block if using secrets
     env:
-      ARCVISION_TOKEN: "2f882333d881dfd1a654dc8f15ed4f782a28512a831e9462"  # <-- PUT YOUR REAL TOKEN HERE
+      ARCVISION_TOKEN: "721274f80f7e48a428f613c468799a9e5f20fcf00e793633"  # <-- PUT YOUR REAL TOKEN HERE
     
     # Only run on non-forked repositories for security
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
@@ -120,13 +120,54 @@ jobs:
           export ARCVISION_TOKEN="${{ env.ARCVISION_TOKEN }}"
           
           echo "Token available: ${#ARCVISION_TOKEN} characters"
-          
+
           # Perform the upload with explicit token
           arcvision scan . --upload
-          
+
           # Verify upload completion
           echo "✅ Analysis uploaded to dashboard"
           echo "✅ All $CONTEXT_FILES_COUNT context files should now be available in the dashboard"
+
+      - name: Pre-upload Probe (checks dashboard schema)
+        if: env.ARCVISION_TOKEN != 'YOUR_ACTUAL_TOKEN_HERE' && env.ARCVISION_TOKEN != ''
+        run: |
+          echo "🔎 Probing dashboard upload endpoint for schema readiness..."
+          # Allow overriding the dashboard upload URL via env; default to known dev host
+          UPLOAD_URL="${{ env.ARCVISION_DASHBOARD_URL }}"
+          if [ -z "$UPLOAD_URL" ]; then
+            UPLOAD_URL="https://arcvisiondev.vercel.app/api/upload"
+          fi
+
+          echo "Using upload URL: $UPLOAD_URL"
+
+          # Minimal probe payload: small graph + context_files field to detect missing column
+          PAYLOAD='{"graph":{"nodes":[]},"contextFiles":{"probe.txt":"ok"}}'
+
+          HTTP_RESPONSE=$(curl -s -w "\n%{http_code}" -o /tmp/probe_response.txt -X POST "$UPLOAD_URL" \
+            -H "Authorization: Bearer $ARCVISION_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data-raw "$PAYLOAD")
+
+          # Last line is status code
+          STATUS_CODE=$(echo "$HTTP_RESPONSE" | tail -n1)
+          BODY=$(cat /tmp/probe_response.txt || echo "")
+
+          echo "Probe status: $STATUS_CODE"
+          echo "Probe response body: $BODY"
+
+          # Detect the specific schema/cache error reported by Supabase
+          if echo "$BODY" | grep -qi "Could not find the 'context_files'" || echo "$BODY" | grep -qi "schema cache"; then
+            echo "\n❌ Dashboard schema missing 'context_files' column or schema cache stale."
+            echo "Apply migration: arcvision-dashboard/db/migrations/2026-02-03_add_context_files.sql"
+            exit 1
+          fi
+
+          if [ "$STATUS_CODE" -eq "500" ]; then
+            echo "\n⚠️  Upload probe returned 500. See /tmp/probe_response.txt for details."
+            exit 1
+          fi
+
+          echo "✅ Dashboard upload endpoint probe passed"
 
       - name: Verify Upload Completeness
         if: env.ARCVISION_TOKEN != 'YOUR_ACTUAL_TOKEN_HERE' && env.ARCVISION_TOKEN != ''
