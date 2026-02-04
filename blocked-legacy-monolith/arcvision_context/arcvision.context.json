@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-02-03T05:49:09.661Z",
+  "generated_at": "2026-02-04T04:41:26.166Z",
   "system": {
     "name": "blocked-legacy-monolith",
     "root_path": "C:\\Users\\AHMAD RAZA\\Downloads\\ArcVision\\test_repos\\blocked-legacy-monolith",
@@ -332,8 +332,8 @@
   ],
   "source": {
     "repo": "https://github.com/Arc-a-it/test_arc",
-    "commit": "8e0fa367dfe19c15888588e82bad92dd2ff86a40",
-    "generated_at": "2026-02-03",
+    "commit": "ed7dfc7bdb280d120894c9dd8764b1a0d31921ad",
+    "generated_at": "2026-02-04",
     "arcvision_version": "0.1.0"
   },
   "structural_layers": {
@@ -512,8 +512,8 @@
   "authoritative_context": {
     "metadata": {
       "canonical": true,
-      "generated_at": "2026-02-03T05:49:09.529Z",
-      "source_commit": "8e0fa367dfe19c15888588e82bad92dd2ff86a40",
+      "generated_at": "2026-02-04T04:41:25.890Z",
+      "source_commit": "ed7dfc7bdb280d120894c9dd8764b1a0d31921ad",
       "arcvision_version": "0.1.0",
       "schema_version": "1.0.0",
       "trust_level": "high"
@@ -610,10 +610,10 @@
     },
     "integrity": {
       "content_hash": "f28c79727352633e6ee34d3270b4e2c091fc02aa716032ff0f4791ccb1ca5107",
-      "generation_signature": "4a5f139a303d27c99dbe3890043672af644a6bda6ace2afd32e73221e1bd7ae5"
+      "generation_signature": "c7bf3dcf8b54a5638a4677698caa040e3cb5ef704b8ffe27ebd17cab9e533685"
     }
   },
   "integrity": {
-    "sha256": "d6ea0320dfbcb0a1afad6b2c02aff55c77b38c7d9b9cbcbd5eed98673aaa7f27"
+    "sha256": "3afbcaa9440433f743e5bdea08b24c606cf1dee7fe23b7ceb32cc13196fb6b33"
   }
 }

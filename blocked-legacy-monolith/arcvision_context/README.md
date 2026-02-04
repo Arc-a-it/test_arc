@@ -40,8 +40,8 @@ Use this artifact when:
 
 ## Determinism & Trust
 
-- Generated from commit: 8e0fa367dfe19c15888588e82bad92dd2ff86a40
-- Generation timestamp: 2026-02-03T05:49:10.522Z
+- Generated from commit: ed7dfc7bdb280d120894c9dd8764b1a0d31921ad
+- Generation timestamp: 2026-02-04T04:41:28.469Z
 - Tool version: 0.2.22
 - Deterministic: same input → same output
 - Explicit assumptions listed inside the artifact
