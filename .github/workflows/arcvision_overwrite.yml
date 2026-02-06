@@ -38,7 +38,7 @@ jobs:
           # -----------------------------------------------------------------
           EVENT_ID="evt_1769399887949_689qgi3f6"
           REASON="Overriding architectural risk/block for critical deployment"
-          OWNER="admin@arcvision.ai"
+          OWNER="github-actions-test@arcvision.ai"
           COMMIT_HASH="HEAD"
           # -----------------------------------------------------------------
           
