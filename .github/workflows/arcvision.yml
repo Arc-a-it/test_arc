@@ -1,12 +1,13 @@
-name: ArcVision Manual Architectural Override
+name: ArcVision Independent Architectural Override
 
 on:
   workflow_dispatch:
-  # This allows you to trigger the override manually after basic_v.yml identifies a risk/block
+  # This allows you to trigger the override manually with hardcoded values
 
 jobs:
-  override-decision:
+  arcvision-override-analysis:
     runs-on: ubuntu-latest
+    name: Independent Architectural Override
     
     # Permission to push changes back to the repository
     permissions:
@@ -24,27 +25,77 @@ jobs:
           node-version: '18'
 
       - name: Install ArcVision CLI
-        run: npm install -g arcvision
+        run: |
+          echo "Installing ArcVision CLI..."
+          npm install -g arcvision
+          echo "✅ ArcVision CLI installed"
+          arcvision --version
 
       - name: Execute Hardcoded Override
         run: |
           # -----------------------------------------------------------------
-          # 🚀 PLACEHOLDER SECTION - EDIT THESE BEFORE RUNNING
+          # 🚀 HARDCODED VALUES - EDIT THESE BEFORE RUNNING
           # -----------------------------------------------------------------
-          EVENT_ID="evt_1769399887949_689qgi3f6" 
-          REASON="Overriding architectural risk/block for critical deployment" 
-          OWNER="adimeofarcvision"
+          EVENT_ID="evt_1769399887949_689qgi3f6"
+          REASON="Overriding architectural risk/block for critical deployment"
+          OWNER="admin@arcvision.ai"
+          COMMIT_HASH="HEAD"
           # -----------------------------------------------------------------
           
           echo "🛡️  Overriding decision for Event ID: $EVENT_ID"
+          echo "Reason: $REASON"
+          echo "Owner: $OWNER"
+          echo "Commit: $COMMIT_HASH"
+          echo ""
           
-          arcvision override --event-id "$EVENT_ID" \
-                            --reason "$REASON" \
-                            --owner "$OWNER"
+          # Validate hardcoded values
+          if [ -z "$EVENT_ID" ] || [ "$EVENT_ID" = "evt_replace_me" ]; then
+            echo "❌ EVENT_ID must be set to a valid blocked event ID"
+            exit 1
+          fi
+          
+          if [ ${#REASON} -lt 10 ]; then
+            echo "❌ REASON must be at least 10 characters long"
+            exit 1
+          fi
+          
+          if [ -z "$OWNER" ] || [ "$OWNER" = "admin@arcvision.ai" ]; then
+            echo "❌ OWNER must be set to actual responsible person"
+            exit 1
+          fi
+          
+          echo "✅ Hardcoded values validation passed"
+          echo ""
+          
+          # Execute the override
+          arcvision override \
+            --event-id "$EVENT_ID" \
+            --reason "$REASON" \
+            --owner "$OWNER" \
+            --commit "$COMMIT_HASH"
+
+      - name: Verify Override Success
+        run: |
+          echo "🔍 Verifying override was recorded..."
+          if [ -f "arcvision_context/architecture.authority.ledger.json" ]; then
+            echo "✅ Authority ledger found"
+            # Show recent ledger entries
+            tail -20 arcvision_context/architecture.authority.ledger.json || echo "Cannot display ledger"
+          else
+            echo "❌ Authority ledger not found"
+            exit 1
+          fi
+          
+          # Check if the override event exists
+          if grep -q "$EVENT_ID" arcvision_context/architecture.authority.ledger.json; then
+            echo "✅ Override event recorded in ledger"
+          else
+            echo "⚠️  Override event not found in ledger"
+          fi
 
       - name: Push Ledger Changes to GitHub
         run: |
-          echo "📝 Syncing Authority Ledger..."
+          echo "📝 Syncing Authority Ledger to GitHub..."
           git config --global user.name "ArcVision Governance Bot"
           git config --global user.email "governance@arcvision.ai"
           
@@ -55,7 +106,61 @@ jobs:
           if ! git diff --staged --quiet; then
             git commit -m "chore(governance): recorded override for $EVENT_ID"
             git push origin HEAD:${{ github.ref }}
-            echo "✅ Override successfully synced to github ledger."
+            echo "✅ Override successfully synced to GitHub ledger."
           else
-            echo "⚠️  No changes to ledger detected. Check if Event ID is valid."
+            echo "⚠️  No changes to ledger detected. Override may have failed."
+            exit 1
           fi
+
+      - name: Generate Override Report
+        run: |
+          echo "📝 Generating override execution report..."
+          cat > arcvision-override-report.md << EOF
+          # ArcVision Override Execution Report
+          
+          ## Override Details
+          - **Event ID**: $EVENT_ID
+          - **Reason**: $REASON
+          - **Owner**: $OWNER
+          - **Commit**: $COMMIT_HASH
+          - **Execution Time**: $(date)
+          - **Repository**: ${{ github.repository }}
+          - **Branch**: ${{ github.ref }}
+          
+          ## Status
+          ✅ Override executed successfully and committed to ledger
+          
+          ## Next Steps
+          1. Monitor for any related architectural impacts
+          2. Document this override in team knowledge base
+          3. Review override frequency for governance improvement
+          
+          *Generated by ArcVision Hardcoded Override Workflow*
+          EOF
+          echo "✅ Override report generated"
+
+      - name: Upload Override Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: arcvision-override-execution
+          path: |
+            arcvision_context/architecture.authority.ledger.json
+            arcvision-override-report.md
+          retention-days: 30
+
+      - name: Summary
+        run: |
+          echo "🎉 ArcVision Override Execution Complete!"
+          echo ""
+          echo "📋 Summary:"
+          echo "   • Event ID: $EVENT_ID"
+          echo "   • Reason: $REASON"
+          echo "   • Owner: $OWNER"
+          echo "   • Commit: $COMMIT_HASH"
+          echo "   • Status: ✅ Successfully overridden and recorded"
+          echo ""
+          echo "📁 Artifacts available:"
+          echo "   • Updated authority ledger"
+          echo "   • Execution report"
+          echo ""
+          echo "✅ Override workflow execution successful"
