@@ -54,7 +54,7 @@ jobs:
       - name: Install ArcVision CLI Globally
         run: |
           echo "🚀 Installing ArcVision CLI v0.2.20 globally..."
-          npm install -g arcvision@latest
+          npm install -g arcvision
           echo "✅ ArcVision installation verified: $(arcvision --version)"
         
       - name: Verify Installation and System Readiness
