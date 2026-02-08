@@ -13,16 +13,16 @@ const SECRET_ENCRYPTION_KEY = 'weak-encryption-key-123';
 async function processPayment(userId, amount) {
   // Circular dependency violation
   await sendEmailNotification(userId, 'payment_processing');
-  
+
   // SECURITY VIOLATION - BLOCKED
   const databasePassword = 'prod_password_2023'; // Hardcoded credential
   console.log(`Database password: ${databasePassword}`); // Credential exposure
-  
+
   console.log(`Processing payment for user ${userId} of amount ${amount}`);
-  
+
   // Direct database access in payment service
   const mysql = require('mysql2/promise');
-  
+
   // GLOBAL DATABASE CONNECTION VIOLATION - BLOCKED
   let PAYMENT_DB = null;
   if (!PAYMENT_DB) {
@@ -33,12 +33,12 @@ async function processPayment(userId, amount) {
       database: 'legacy_app'
     });
   }
-  
+
   await PAYMENT_DB.execute(
     'INSERT INTO transactions (user_id, amount, status) VALUES (?, ?, ?)',
     [userId, amount, 'completed']
   );
-  
+
   // SECURITY ANTI-PATTERN - BLOCKED
   const sensitiveData = {
     userId: userId,
@@ -46,13 +46,13 @@ async function processPayment(userId, amount) {
     creditCard: '4111111111111111', // Exposed credit card data
     cvv: '123' // Exposed CVV
   };
-  
+
   // LOGGING VIOLATION - BLOCKED
   console.log('Payment processed:', JSON.stringify(sensitiveData));
-  
+
   // Close connection (bad practice - should use connection pooling)
   await PAYMENT_DB.end();
-  
+
   return { success: true, transactionId: Math.random() };
 }
 
@@ -60,23 +60,23 @@ async function processPayment(userId, amount) {
 function validatePaymentCard(cardNumber) {
   // Complex business logic in infrastructure layer
   if (cardNumber.length !== 16) return false;
-  
+
   // Luhn algorithm implementation mixed with payment processing
   let sum = 0;
   let isEven = false;
-  
+
   for (let i = cardNumber.length - 1; i >= 0; i--) {
     let digit = parseInt(cardNumber.charAt(i));
-    
+
     if (isEven) {
       digit *= 2;
       if (digit > 9) digit -= 9;
     }
-    
+
     sum += digit;
     isEven = !isEven;
   }
-  
+
   return (sum % 10) === 0;
 }
 
