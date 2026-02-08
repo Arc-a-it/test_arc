@@ -343,6 +343,7 @@ jobs:
           echo "✅ ACIG evaluation completed"
 
       - name: Authority Ledger Monitoring and Audit
+        if: always()
         run: |
           echo "📋 Step 5: Authority Ledger Analysis and Monitoring..."
           echo "Tracking architectural decisions and governance history"
@@ -358,6 +359,7 @@ jobs:
           echo "✅ Authority ledger analysis completed"
 
       - name: Advanced Architectural Analysis
+        if: always()
         run: |
           echo "🔬 Step 6: Advanced Architectural Analysis..."
           echo "Running comprehensive system evaluation"
@@ -378,6 +380,7 @@ jobs:
           echo "✅ Advanced analysis completed"
 
       - name: Additional Analysis (Optional)
+        if: always()
         run: |
           echo "🔍 Step 7: Additional Analysis..."
           echo "Running supplementary architectural checks"
@@ -391,6 +394,7 @@ jobs:
           echo "✅ Additional analysis completed"
 
       - name: Generate Comprehensive Analysis Report
+        if: always()
         run: |
           echo "📝 Step 8: Generating Enterprise Analysis Report..."
           echo "Creating comprehensive architectural governance summary"
@@ -454,6 +458,7 @@ jobs:
           echo "✅ Enterprise analysis report generated"
 
       - name: Upload Analysis Artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: arcvision-enterprise-analysis
@@ -464,6 +469,7 @@ jobs:
           retention-days: 30
 
       - name: Summary and Recommendations
+        if: always()
         run: |
           echo "🎉 ArcVision Enterprise Analysis Complete!"
           echo ""
