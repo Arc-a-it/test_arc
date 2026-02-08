@@ -82,7 +82,7 @@ jobs:
           echo "Current working directory: $(pwd)"
           echo "Directory contents before scan:"
           ls -la
-          arcvision scan . --verbose
+          arcvision scan .
           echo "✅ Architecture map generated successfully"
           echo "📁 Generated files:"
           if [ -d "arcvision_context" ]; then
@@ -361,18 +361,18 @@ jobs:
           fi
           
           echo ""
-          echo "Running basic evaluation with verbose output:"
-          arcvision evaluate . --verbose
+          echo "Running basic evaluation:"
+          arcvision evaluate .
           echo ""
           echo "Running with fail-on-blocked for CI/CD enforcement (should FAIL workflow):"
-          arcvision evaluate . --fail-on-blocked --verbose
+          arcvision evaluate . --fail-on-blocked
           echo ""
           echo "Simulating changes to critical files:"
           find . -name "*.js" -o -name "*.ts" | head -5 | xargs | sed 's/ /,/g' > /tmp/simulate_files.txt
           if [ -s /tmp/simulate_files.txt ]; then
             SIM_FILES=$(cat /tmp/simulate_files.txt)
             echo "Simulating changes to: $SIM_FILES"
-            arcvision evaluate . --simulate-changes "$SIM_FILES" --verbose
+            arcvision evaluate . --simulate-changes "$SIM_FILES"
           fi
           echo "✅ ACIG evaluation completed"
 
