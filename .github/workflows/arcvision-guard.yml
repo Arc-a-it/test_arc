@@ -102,7 +102,7 @@ jobs:
           fi
 
       - name: Upload Analysis to Dashboard
-        if: env.ARCVISION_TOKEN != 'YOUR_ACTUAL_TOKEN_HERE' && env.ARCVISION_TOKEN != ''
+        if: always() && env.ARCVISION_TOKEN != 'YOUR_ACTUAL_TOKEN_HERE' && env.ARCVISION_TOKEN != ''
         run: |
           echo "☁️  Uploading analysis to dashboard..."
           echo "🔍 Verifying arcvision_context directory contents before upload:"
