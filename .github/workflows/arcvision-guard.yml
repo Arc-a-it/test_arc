@@ -30,9 +30,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Comprehensive Architectural Governance
     
-    # ONLY SET TOKEN HERE IF YOU WANT TO HARDCODE IT
-    # Remove this env block if using secrets
+    # Job-level environment variables - these will be available to all steps
     env:
+      # ONLY SET TOKEN HERE IF YOU WANT TO HARDCODE IT
+      # Remove this env block if using secrets
       ARCVISION_TOKEN: "0aa40b8a57cae5fb477f20dda29ab7654fc998a31ace271e"  # <-- PUT YOUR REAL TOKEN HERE
     
     # Only run on non-forked repositories for security
@@ -67,20 +68,37 @@ jobs:
           echo "📊 System information:"
           node --version
           npm --version
+          echo "📂 Testing arcvision directory creation capability:"
+          mkdir -p test_arcvision_dir
+          echo "Test file" > test_arcvision_dir/test.txt
+          ls -la test_arcvision_dir/
+          rm -rf test_arcvision_dir
           echo "✅ System ready for architectural analysis"
 
       - name: Generate Initial Architecture Map
         run: |
           echo "🏗️  Step 1: Generating comprehensive architecture map..."
           echo "This creates the foundational context for all subsequent analysis"
-          arcvision scan .
+          echo "Current working directory: $(pwd)"
+          echo "Directory contents before scan:"
+          ls -la
+          arcvision scan . --verbose
           echo "✅ Architecture map generated successfully"
           echo "📁 Generated files:"
-          ls -la arcvision_context/
+          if [ -d "arcvision_context" ]; then
+            ls -la arcvision_context/
+          else
+            echo "❌ arcvision_context directory was not created!"
+            echo "Checking for any arcvision files anywhere:"
+            find . -name "*arcvision*" -type f 2>/dev/null || echo "No arcvision files found"
+          fi
 
       - name: Dashboard Integration
         run: |
           echo "🔗 Step 2: Dashboard integration..."
+          echo "Current directory: $(pwd)"
+          echo "Environment variables:"
+          env | grep -i arcvision || echo "No ARCVISION variables found"
           
           # Check if token is set and not the placeholder
           if [ -n "$ARCVISION_TOKEN" ] && [ "$ARCVISION_TOKEN" != "YOUR_ACTUAL_TOKEN_HERE" ]; then
@@ -106,7 +124,16 @@ jobs:
         run: |
           echo "☁️  Uploading analysis to dashboard..."
           echo "🔍 Verifying arcvision_context directory contents before upload:"
-          ls -la arcvision_context/
+          if [ -d "arcvision_context" ]; then
+            ls -la arcvision_context/
+          else
+            echo "❌ ERROR: arcvision_context directory not found!"
+            echo "This indicates the scan step failed to generate context files."
+            echo "Current directory contents:"
+            ls -la
+            echo "Exiting upload step due to missing context files."
+            exit 1
+          fi
           
           # Count JSON files to be uploaded
           CONTEXT_FILES_COUNT=$(find arcvision_context/ -name "*.json" | wc -l)
@@ -122,11 +149,18 @@ jobs:
           echo "Token available: ${#ARCVISION_TOKEN} characters"
 
           # Perform the upload with explicit token
+          echo "Starting upload process..."
           arcvision scan . --upload
+          echo "Upload process completed."
 
           # Verify upload completion
-          echo "✅ Analysis uploaded to dashboard"
-          echo "✅ All $CONTEXT_FILES_COUNT context files should now be available in the dashboard"
+          if [ $? -eq 0 ]; then
+            echo "✅ Analysis uploaded to dashboard successfully"
+            echo "✅ All $CONTEXT_FILES_COUNT context files should now be available in the dashboard"
+          else
+            echo "❌ Upload failed with exit code $?"
+            echo "Check logs above for upload errors"
+          fi
 
       - name: Pre-upload Probe (checks dashboard schema)
         if: env.ARCVISION_TOKEN != 'YOUR_ACTUAL_TOKEN_HERE' && env.ARCVISION_TOKEN != ''
