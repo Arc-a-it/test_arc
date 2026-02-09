@@ -111,6 +111,9 @@ jobs:
             --reason "$REASON" \
             --owner "$OWNER" \
             --commit "$COMMIT_HASH"
+          
+          # Persist Event ID for next steps
+          echo "EVENT_ID=$EVENT_ID" >> $GITHUB_ENV
 
       - name: Verify Override Success
         run: |
@@ -134,22 +137,24 @@ jobs:
       - name: Push Ledger Changes to GitHub
         run: |
           echo "📝 Syncing Authority Ledger to GitHub..."
+          # Configure Git Identity
           git config --global user.name "ArcVision Governance Bot"
           git config --global user.email "governance@arcvision.ai"
           
-          # 1. Update first to minimize conflicts
-          echo "Updating from remote..."
-          git fetch origin
-          # Pull explicitly to avoid divergent branches
-          git pull origin ${{ github.ref_name }} --rebase
-          
-          # 2. Add the ledger file specifically
+          # 1. Stage the specific file changed by the previous step
           git add arcvision_context/architecture.authority.ledger.json
           
-          # 3. Commit and Push
+          # 2. Check for changes immediately
           if ! git diff --staged --quiet; then
-            echo "Changes detected, committing..."
+            echo "Changes detected, creating local commit..."
+            # Commit locally first (so we have a clean working tree for rebase)
             git commit -m "chore(governance): recorded override for $EVENT_ID"
+            
+            # 3. Pull latest changes with rebase (replay our commit on top)
+            echo "Rebasing on top of remote..."
+            git pull origin ${{ github.ref_name }} --rebase
+            
+            # 4. Push the result
             git push origin HEAD:${{ github.ref }}
             echo "✅ Override successfully synced to GitHub ledger."
           else
