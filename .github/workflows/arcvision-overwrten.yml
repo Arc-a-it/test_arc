@@ -139,30 +139,26 @@ jobs:
           git config --global user.name "ArcVision Governance Bot"
           git config --global user.email "governance@arcvision.ai"
           
-          # 1. First, reset any non-tracked files that might interfere
-          git clean -fd --exclude="arcvision_context/" || true
+          # Ensure we are on the correct branch and up to date
+          echo "Rebasing to avoid conflicts..."
+          git pull --rebase origin ${{ github.ref_name }}
           
-          # 2. Add and commit ALL arcvision_context changes first
-          git add arcvision_context/
-          if ! git diff --staged --quiet; then
-            git commit -m "chore(governance): ArcVision system changes" || echo "Commit may have failed (possibly empty)"
-          fi
+          # Add the ledger file specifically
+          git add arcvision_context/architecture.authority.ledger.json
           
-          # 3. Now pull with rebase should work
-          echo "Updating from remote..."
-          git pull origin ${{ github.ref_name }} --rebase
+          # Debug: Show status
+          echo "Debug: Git status before commit:"
+          git status
           
-          # 4. Check if ledger specifically has changes (separate from other files)
-          LEDGER_FILE="arcvision_context/architecture.authority.ledger.json"
-          if git diff HEAD -- "$LEDGER_FILE" | grep -q "[a-zA-Z0-9]"; then
-            echo "Ledger has changes, creating override commit..."
-            git add "$LEDGER_FILE"
-            git commit -m "chore(governance): recorded override for $EVENT_ID"
-            git push origin HEAD:${{ github.ref }}
-            echo "✅ Override successfully synced to GitHub ledger."
-          else
-            echo "⚠️  No changes to ledger detected. Override may have failed or already exists."
-          fi
+          # Commit and Push
+          # We simply try to commit. If there are no changes, git commit will exit with 1, 
+          # so we use || echo to prevent workflow failure in that specific case.
+          git commit -m "chore(governance): recorded override for $EVENT_ID" || echo "⚠️ No changes to commit (ledger likely up to date)"
+          
+          # Push changes
+          # Push even if commit was empty, to ensure we are synced (though rare)
+          git push origin HEAD:${{ github.ref }}
+          echo "✅ Ledger sync operation complete."
 
       - name: Generate Override Report
         run: |
