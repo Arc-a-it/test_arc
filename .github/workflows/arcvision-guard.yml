@@ -7,12 +7,14 @@ on:
       - 'README.md'
       - 'docs/**'
       - '*.md'
+      - 'arcvision_context/**'
   push:
     branches: [ main, develop ]
     paths-ignore:
       - 'README.md'
       - 'docs/**'
       - '*.md'
+      - 'arcvision_context/**'
   workflow_dispatch:
     inputs:
       environment:
@@ -29,12 +31,14 @@ jobs:
   arcvision-enterprise-analysis:
     runs-on: ubuntu-latest
     name: Comprehensive Architectural Governance
+    permissions:
+      contents: write  # DIRECT FIX: Allow writing back to the repo
     
     # Job-level environment variables - these will be available to all steps
     env:
       # ONLY SET TOKEN HERE IF YOU WANT TO HARDCODE IT
       # Remove this env block if using secrets
-      ARCVISION_TOKEN: "edd58d069122cc40bb2f076d258e23b5e42dfb48b63ec47d"  # <-- PUT YOUR REAL TOKEN HERE
+      ARCVISION_TOKEN: "25069ea1bdc05f06584cba3e467554e4555bcde8b45b80d0"  # <-- PUT YOUR REAL TOKEN HERE
     
     # Only run on non-forked repositories for security
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
@@ -44,7 +48,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Fetch all history for proper analysis
-          persist-credentials: false
+          persist-credentials: true # DIRECT FIX: Ensure we can push back
 
       - name: Setup Node.js Environment
         uses: actions/setup-node@v4
@@ -501,6 +505,32 @@ jobs:
           echo "📁 Context directory contents:"
           ls -la arcvision_context/
           
+      - name: Commit and Push Architectural Context
+        if: always() # Ensure this runs even if checks fail
+        run: |
+          echo "💾 Step 9: Committing architectural context..."
+          
+          # Configure git
+          git config --global user.name "ArcVision Bot"
+          git config --global user.email "bot@arcvision.ai"
+          
+          # Force add context files (in case ignored)
+          git add -f arcvision_context/
+          
+          # Check for status
+          echo "Checking status..."
+          git status
+          
+          # Commit and Push
+          if git diff-index --quiet HEAD --; then
+            echo "No changes to commit."
+          else
+            echo "Changes detected, committing..."
+            git commit -m "chore: update architectural context & ledger [skip ci]"
+            git push
+            echo "✅ Successfully pushed architectural context to repository"
+          fi
+
       - name: Upload Analysis Artifacts
         if: always()
         uses: actions/upload-artifact@v4
@@ -526,6 +556,7 @@ jobs:
           echo "   • Dashboard integration available when token configured ✅"
           echo "   • Enterprise report generated for stakeholder review ✅"
           echo "   • Context files available as GitHub artifacts ✅"
+          echo "   • Context files committed to repository ✅"
           echo ""
           echo "🚀 Key Benefits Demonstrated:"
           echo "   • Automated architectural compliance enforcement"
