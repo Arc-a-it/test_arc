@@ -1,5 +1,3 @@
-# arcvision-override.yml
-
 name: ArcVision Independent Architectural Override
 
 on:
@@ -139,29 +137,23 @@ jobs:
           git config --global user.name "ArcVision Governance Bot"
           git config --global user.email "governance@arcvision.ai"
           
-          # 1. First, reset any non-tracked files that might interfere
-          git clean -fd --exclude="arcvision_context/" || true
-          
-          # 2. Add and commit ALL arcvision_context changes first
-          git add arcvision_context/
-          if ! git diff --staged --quiet; then
-            git commit -m "chore(governance): ArcVision system changes" || echo "Commit may have failed (possibly empty)"
-          fi
-          
-          # 3. Now pull with rebase should work
+          # 1. Update first to minimize conflicts
           echo "Updating from remote..."
+          git fetch origin
+          # Pull explicitly to avoid divergent branches
           git pull origin ${{ github.ref_name }} --rebase
           
-          # 4. Check if ledger specifically has changes (separate from other files)
-          LEDGER_FILE="arcvision_context/architecture.authority.ledger.json"
-          if git diff HEAD -- "$LEDGER_FILE" | grep -q "[a-zA-Z0-9]"; then
-            echo "Ledger has changes, creating override commit..."
-            git add "$LEDGER_FILE"
+          # 2. Add the ledger file specifically
+          git add arcvision_context/architecture.authority.ledger.json
+          
+          # 3. Commit and Push
+          if ! git diff --staged --quiet; then
+            echo "Changes detected, committing..."
             git commit -m "chore(governance): recorded override for $EVENT_ID"
             git push origin HEAD:${{ github.ref }}
             echo "✅ Override successfully synced to GitHub ledger."
           else
-            echo "⚠️  No changes to ledger detected. Override may have failed or already exists."
+            echo "⚠️  No changes to ledger detected. Override may have failed or already exists locally."
           fi
 
       - name: Generate Override Report
