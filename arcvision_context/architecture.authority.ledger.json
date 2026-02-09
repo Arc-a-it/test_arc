@@ -286,6 +286,20 @@
       "blast_radius": 0,
       "affected_nodes": 0,
       "override": false
+    },
+    {
+      "event_id": "evt_1770645114483_wnmfbyzsu",
+      "timestamp": "2026-02-09T13:51:54.483Z",
+      "decision": "OVERRIDDEN",
+      "commit": "HEAD",
+      "branch": "unknown",
+      "author": "github-actions-test@arcvision.ai",
+      "original_blocked_event": "evt_1770631659380_ntoeefetg",
+      "override": {
+        "owner": "github-actions-test@arcvision.ai",
+        "reason": "Testing GitHub Actions override workflow functionality",
+        "timestamp": "2026-02-09T13:51:54.484Z"
+      }
     }
   ]
 }
