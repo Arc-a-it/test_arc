@@ -6,7 +6,7 @@ on:
       event_id:
         description: 'Event ID to override (e.g., evt_123)'
         required: true
-        default: 'evt_1770631659380_ntoeefetg"
+        default: 'evt_1770631659380_ntoeefetg'
       reason:
         description: 'Reason for override (>10 chars)'
         required: true
