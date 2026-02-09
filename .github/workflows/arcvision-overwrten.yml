@@ -1,3 +1,5 @@
+# arcvision-override.yml
+
 name: ArcVision Independent Architectural Override
 
 on:
@@ -137,21 +139,29 @@ jobs:
           git config --global user.name "ArcVision Governance Bot"
           git config --global user.email "governance@arcvision.ai"
           
-          # Ensure we are on the correct branch and up to date
-          echo "Rebasing to avoid conflicts..."
-          git pull --rebase origin ${{ github.ref_name }}
+          # 1. First, reset any non-tracked files that might interfere
+          git clean -fd --exclude="arcvision_context/" || true
           
-          # Add the ledger file specifically
-          git add arcvision_context/architecture.authority.ledger.json
-          
-          # Only commit if something changed
+          # 2. Add and commit ALL arcvision_context changes first
+          git add arcvision_context/
           if ! git diff --staged --quiet; then
+            git commit -m "chore(governance): ArcVision system changes" || echo "Commit may have failed (possibly empty)"
+          fi
+          
+          # 3. Now pull with rebase should work
+          echo "Updating from remote..."
+          git pull origin ${{ github.ref_name }} --rebase
+          
+          # 4. Check if ledger specifically has changes (separate from other files)
+          LEDGER_FILE="arcvision_context/architecture.authority.ledger.json"
+          if git diff HEAD -- "$LEDGER_FILE" | grep -q "[a-zA-Z0-9]"; then
+            echo "Ledger has changes, creating override commit..."
+            git add "$LEDGER_FILE"
             git commit -m "chore(governance): recorded override for $EVENT_ID"
             git push origin HEAD:${{ github.ref }}
             echo "✅ Override successfully synced to GitHub ledger."
           else
             echo "⚠️  No changes to ledger detected. Override may have failed or already exists."
-            # Do not exit 1 here, as "no change" is a valid state (idempotency)
           fi
 
       - name: Generate Override Report
