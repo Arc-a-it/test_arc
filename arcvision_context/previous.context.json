@@ -1,0 +1,3302 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-02-09T10:07:34.887Z",
+  "system": {
+    "name": "test_arc",
+    "root_path": "/home/runner/work/test_arc/test_arc",
+    "language": "javascript",
+    "archetype": {
+      "type": "service_oriented",
+      "confidence": "high",
+      "description": "System primarily follows service_oriented architectural pattern",
+      "authorityPattern": "service_oriented_authority"
+    }
+  },
+  "nodes": [
+    {
+      "id": "1b658056bb770f5e",
+      "type": "file",
+      "path": "blocked-legacy-monolith/test-violation.js",
+      "role": "module",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "generic",
+      "criticality": 0
+    },
+    {
+      "id": "259d8e4ae141658e",
+      "type": "file",
+      "path": "chaos-monkey.js",
+      "role": "module",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "generic",
+      "criticality": 1
+    },
+    {
+      "id": "34a887a410479f36",
+      "type": "file",
+      "path": "architecture-destroyer.js",
+      "role": "module",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "generic",
+      "criticality": 1
+    },
+    {
+      "id": "58900382986894d3",
+      "type": "file",
+      "path": "risky-microservices-concerns/services/user-service/package.json",
+      "role": "service",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "logic",
+      "criticality": 0
+    },
+    {
+      "id": "5a3334c528b49051",
+      "type": "file",
+      "path": "blocked-legacy-monolith/src/emailService.js",
+      "role": "service",
+      "dependencies": [
+        "blocked-legacy-monolith/src/paymentProcessor.js"
+      ],
+      "blast_radius": 2,
+      "layer": "logic",
+      "criticality": 4.4
+    },
+    {
+      "id": "6e55b702aefae5fe",
+      "type": "file",
+      "path": "blocked-legacy-monolith/package.json",
+      "role": "module",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "generic",
+      "criticality": 0
+    },
+    {
+      "id": "718547f33eadfd8d",
+      "type": "file",
+      "path": "risky-microservices-concerns/services/user-service/src/server.js",
+      "role": "service",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "logic",
+      "criticality": 1
+    },
+    {
+      "id": "8ebdc8b5c34484ab",
+      "type": "file",
+      "path": "risky-microservices-concerns/package.json",
+      "role": "service",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "logic",
+      "criticality": 0
+    },
+    {
+      "id": "98dd0099ac25eb7f",
+      "type": "file",
+      "path": "blocked-legacy-monolith/src/index.js",
+      "role": "consumer",
+      "dependencies": [
+        "blocked-legacy-monolith/src/emailService.js",
+        "blocked-legacy-monolith/src/paymentProcessor.js"
+      ],
+      "blast_radius": 0,
+      "layer": "generic",
+      "criticality": 1.8
+    },
+    {
+      "id": "a97c0e1624d0d70e",
+      "type": "file",
+      "path": "arcvision_context/architecture.authority.ledger.json",
+      "role": "store",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "state",
+      "criticality": 2
+    },
+    {
+      "id": "c4da1da79f54b96e",
+      "type": "file",
+      "path": "risky-microservices-concerns/services/shared-models/package.json",
+      "role": "service",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "logic",
+      "criticality": 0
+    },
+    {
+      "id": "cf413c524e49e445",
+      "type": "file",
+      "path": "risky-microservices-concerns/services/shared-models/index.js",
+      "role": "service",
+      "dependencies": [],
+      "blast_radius": 0,
+      "layer": "logic",
+      "criticality": 0.8
+    },
+    {
+      "id": "da562e5d8be9579b",
+      "type": "file",
+      "path": "blocked-legacy-monolith/src/paymentProcessor.js",
+      "role": "module",
+      "dependencies": [
+        "blocked-legacy-monolith/src/emailService.js"
+      ],
+      "blast_radius": 2,
+      "layer": "generic",
+      "criticality": 4.4
+    }
+  ],
+  "edges": [
+    {
+      "from": "5a3334c528b49051",
+      "to": "da562e5d8be9579b",
+      "relation": "calls",
+      "weight": 1
+    },
+    {
+      "from": "5a3334c528b49051",
+      "to": "da562e5d8be9579b",
+      "relation": "imports",
+      "weight": 2
+    },
+    {
+      "from": "98dd0099ac25eb7f",
+      "to": "5a3334c528b49051",
+      "relation": "imports",
+      "weight": 2
+    },
+    {
+      "from": "98dd0099ac25eb7f",
+      "to": "da562e5d8be9579b",
+      "relation": "imports",
+      "weight": 2
+    },
+    {
+      "from": "da562e5d8be9579b",
+      "to": "5a3334c528b49051",
+      "relation": "calls",
+      "weight": 1
+    },
+    {
+      "from": "da562e5d8be9579b",
+      "to": "5a3334c528b49051",
+      "relation": "imports",
+      "weight": 2
+    }
+  ],
+  "symbols": [
+    {
+      "id": "architecture-destroyer.js::domainLayer",
+      "name": "domainLayer",
+      "kind": "function",
+      "fileId": "architecture-destroyer.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 77,
+          "column": 6,
+          "index": 2916
+        },
+        "end": {
+          "line": 79,
+          "column": 7,
+          "index": 2986
+        }
+      }
+    },
+    {
+      "id": "architecture-destroyer.js::infrastructureLayer",
+      "name": "infrastructureLayer",
+      "kind": "function",
+      "fileId": "architecture-destroyer.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 81,
+          "column": 6,
+          "index": 3000
+        },
+        "end": {
+          "line": 83,
+          "column": 7,
+          "index": 3075
+        }
+      }
+    },
+    {
+      "id": "architecture-destroyer.js::applicationLayer",
+      "name": "applicationLayer",
+      "kind": "function",
+      "fileId": "architecture-destroyer.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 85,
+          "column": 6,
+          "index": 3089
+        },
+        "end": {
+          "line": 87,
+          "column": 7,
+          "index": 3162
+        }
+      }
+    },
+    {
+      "id": "architecture-destroyer.js::presentationLayer",
+      "name": "presentationLayer",
+      "kind": "function",
+      "fileId": "architecture-destroyer.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 89,
+          "column": 6,
+          "index": 3176
+        },
+        "end": {
+          "line": 91,
+          "column": 7,
+          "index": 3264
+        }
+      }
+    },
+    {
+      "id": "blocked-legacy-monolith/src/emailService.js::sendEmailNotification",
+      "name": "sendEmailNotification",
+      "kind": "function",
+      "fileId": "blocked-legacy-monolith/src/emailService.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0,
+          "index": 329
+        },
+        "end": {
+          "line": 20,
+          "column": 1,
+          "index": 730
+        }
+      }
+    },
+    {
+      "id": "blocked-legacy-monolith/src/emailService.js::getUserPreferences",
+      "name": "getUserPreferences",
+      "kind": "function",
+      "fileId": "blocked-legacy-monolith/src/emailService.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 28,
+          "column": 0,
+          "index": 922
+        },
+        "end": {
+          "line": 45,
+          "column": 1,
+          "index": 1372
+        }
+      }
+    },
+    {
+      "id": "blocked-legacy-monolith/src/emailService.js::processEmailTemplate",
+      "name": "processEmailTemplate",
+      "kind": "function",
+      "fileId": "blocked-legacy-monolith/src/emailService.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 48,
+          "column": 0,
+          "index": 1412
+        },
+        "end": {
+          "line": 57,
+          "column": 1,
+          "index": 1770
+        }
+      }
+    },
+    {
+      "id": "blocked-legacy-monolith/src/index.js::initializeDatabase",
+      "name": "initializeDatabase",
+      "kind": "function",
+      "fileId": "blocked-legacy-monolith/src/index.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 31,
+          "column": 0,
+          "index": 756
+        },
+        "end": {
+          "line": 38,
+          "column": 1,
+          "index": 1119
+        }
+      }
+    },
+    {
+      "id": "blocked-legacy-monolith/src/index.js::calculateUserStats",
+      "name": "calculateUserStats",
+      "kind": "function",
+      "fileId": "blocked-legacy-monolith/src/index.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 74,
+          "column": 0,
+          "index": 2141
+        },
+        "end": {
+          "line": 85,
+          "column": 1,
+          "index": 2491
+        }
+      }
+    },
+    {
+      "id": "blocked-legacy-monolith/src/paymentProcessor.js::processPayment",
+      "name": "processPayment",
+      "kind": "function",
+      "fileId": "blocked-legacy-monolith/src/paymentProcessor.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0,
+          "index": 446
+        },
+        "end": {
+          "line": 57,
+          "column": 1,
+          "index": 1843
+        }
+      }
+    },
+    {
+      "id": "blocked-legacy-monolith/src/paymentProcessor.js::validatePaymentCard",
+      "name": "validatePaymentCard",
+      "kind": "function",
+      "fileId": "blocked-legacy-monolith/src/paymentProcessor.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 60,
+          "column": 0,
+          "index": 1909
+        },
+        "end": {
+          "line": 81,
+          "column": 1,
+          "index": 2405
+        }
+      }
+    },
+    {
+      "id": "blocked-legacy-monolith/src/paymentProcessor.js::logPaymentAudit",
+      "name": "logPaymentAudit",
+      "kind": "function",
+      "fileId": "blocked-legacy-monolith/src/paymentProcessor.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 84,
+          "column": 0,
+          "index": 2452
+        },
+        "end": {
+          "line": 89,
+          "column": 1,
+          "index": 2740
+        }
+      }
+    },
+    {
+      "id": "chaos-monkey.js::a",
+      "name": "a",
+      "kind": "function",
+      "fileId": "chaos-monkey.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 96,
+          "column": 6,
+          "index": 3009
+        },
+        "end": {
+          "line": 96,
+          "column": 34,
+          "index": 3037
+        }
+      }
+    },
+    {
+      "id": "chaos-monkey.js::b",
+      "name": "b",
+      "kind": "function",
+      "fileId": "chaos-monkey.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 97,
+          "column": 6,
+          "index": 3044
+        },
+        "end": {
+          "line": 97,
+          "column": 34,
+          "index": 3072
+        }
+      }
+    },
+    {
+      "id": "chaos-monkey.js::c",
+      "name": "c",
+      "kind": "function",
+      "fileId": "chaos-monkey.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 98,
+          "column": 6,
+          "index": 3079
+        },
+        "end": {
+          "line": 98,
+          "column": 34,
+          "index": 3107
+        }
+      }
+    },
+    {
+      "id": "risky-microservices-concerns/services/user-service/src/server.js::startServer",
+      "name": "startServer",
+      "kind": "function",
+      "fileId": "risky-microservices-concerns/services/user-service/src/server.js",
+      "exported": false,
+      "loc": {
+        "start": {
+          "line": 136,
+          "column": 6,
+          "index": 4723
+        },
+        "end": {
+          "line": 141,
+          "column": 1,
+          "index": 4879
+        }
+      }
+    }
+  ],
+  "metrics": {
+    "files_with_functions": 6,
+    "files_with_high_blast_radius": 0,
+    "total_calls": 2,
+    "total_dependencies": 6,
+    "total_depends_on": 0,
+    "total_edges": 6,
+    "total_files": 13,
+    "total_imports": 8,
+    "total_nodes": 13,
+    "total_owns": 0
+  },
+  "contextSurface": [
+    {
+      "file": "blocked-legacy-monolith/src/emailService.js",
+      "score": 4.4,
+      "reason": "Blast: 2, Deps: 5"
+    },
+    {
+      "file": "arcvision_context/architecture.authority.ledger.json",
+      "score": 2,
+      "reason": "Blast: 0, Deps: 0"
+    },
+    {
+      "file": "blocked-legacy-monolith/src/index.js",
+      "score": 1.8,
+      "reason": "Blast: 0, Deps: 0"
+    },
+    {
+      "file": "architecture-destroyer.js",
+      "score": 1,
+      "reason": "Blast: 0, Deps: 0"
+    },
+    {
+      "file": "blocked-legacy-monolith/package.json",
+      "score": 0,
+      "reason": "Blast: 0, Deps: 0"
+    }
+  ],
+  "assumptions": [
+    "Dynamic imports resolved statically where possible",
+    "Runtime reflection not fully captured",
+    "Only code reachable from entry points analyzed",
+    "Third-party dependencies treated as black boxes",
+    "Build-time code generation not reflected in static analysis",
+    "ArcVision prioritizes execution-relevant structure over exhaustive file indexing. Non-runtime files are represented as envelope metadata unless they directly affect execution."
+  ],
+  "source": {
+    "repo": "https://github.com/Arc-a-it/test_arc",
+    "commit": "47b651d78fcf4cd316db9534fa471dd5cccde90e",
+    "generated_at": "2026-02-09",
+    "arcvision_version": "0.1.0"
+  },
+  "structural_layers": {
+    "runtime_code": {
+      "status": "included",
+      "description": "Source files that directly participate in runtime execution and system behavior",
+      "project_characteristics": {
+        "has_package_json": false,
+        "has_src_directory": false,
+        "total_files": 14,
+        "javascript_files": 7,
+        "typescript_files": 0,
+        "lua_files": 0
+      }
+    },
+    "execution_scripts": {
+      "status": "included",
+      "description": "Scripts invoked by runtime code to perform atomic or system-critical operations",
+      "project_characteristics": {
+        "lua_files_count": 0,
+        "is_lua_project": false
+      }
+    },
+    "infrastructure_scripts": {
+      "status": "included",
+      "description": "Scripts that manage infrastructure-level behavior (queues, databases, orchestration)"
+    },
+    "configuration": {
+      "status": "excluded",
+      "description": "Project configuration files represented as metadata, not execution graph nodes"
+    },
+    "documentation": {
+      "status": "excluded",
+      "description": "Documentation files represented as metadata only"
+    },
+    "assets": {
+      "status": "excluded",
+      "description": "Static assets with no effect on execution semantics"
+    },
+    "project_metadata": {
+      "size_category": "small",
+      "file_count": 14,
+      "language_mix": {
+        "javascript": 7,
+        "typescript": 0,
+        "lua": 0,
+        "config": 6
+      },
+      "has_package_management": false,
+      "has_standard_structure": false,
+      "has_tests": false,
+      "is_lua_intensive": false
+    }
+  },
+  "project_envelope": {
+    "configuration_files": [
+      {
+        "path": "blocked-legacy-monolith/package.json",
+        "role": "dependency_manifest"
+      },
+      {
+        "path": "risky-microservices-concerns/package.json",
+        "role": "dependency_manifest"
+      },
+      {
+        "path": "risky-microservices-concerns/services/shared-models/package.json",
+        "role": "dependency_manifest"
+      },
+      {
+        "path": "risky-microservices-concerns/services/user-service/package.json",
+        "role": "dependency_manifest"
+      }
+    ],
+    "documentation": [
+      {
+        "path": "arcvision_context/README.md",
+        "role": "system_overview"
+      }
+    ],
+    "build_tools": []
+  },
+  "authority_cores": [
+    {
+      "file": "blocked-legacy-monolith/src/emailService.js",
+      "authority_score": 10.600000000000001,
+      "blast_radius": 2,
+      "criticality": 4.4,
+      "role": "service",
+      "layer": "logic",
+      "influence_patterns": [
+        "central_coordinator",
+        "cross_layer_bridge"
+      ]
+    },
+    {
+      "file": "blocked-legacy-monolith/src/paymentProcessor.js",
+      "authority_score": 10.600000000000001,
+      "blast_radius": 2,
+      "criticality": 4.4,
+      "role": "module",
+      "layer": "generic",
+      "influence_patterns": [
+        "central_coordinator",
+        "cross_layer_bridge"
+      ]
+    }
+  ],
+  "hidden_coupling": [],
+  "completeness_metrics": {
+    "total_files_analyzed": 13,
+    "code_files": 8,
+    "configuration_files": 5,
+    "documentation_files": 0,
+    "coverage_percentage": 100
+  },
+  "structural_hubs": [],
+  "architectural_boundaries": {
+    "generic": {
+      "files": 6,
+      "authority_cores": [],
+      "boundary_violations": []
+    },
+    "state": {
+      "files": 1,
+      "authority_cores": [],
+      "boundary_violations": []
+    },
+    "logic": {
+      "files": 6,
+      "authority_cores": [],
+      "boundary_violations": []
+    }
+  },
+  "structural_invariants": [
+    {
+      "rule": "service_component_ratio",
+      "description": "Maintain balance between services and components",
+      "current_value": null,
+      "recommended_range": "0.2-0.5"
+    }
+  ],
+  "invariants": [
+    {
+      "id": "try_s____architecture-destroyer_js_",
+      "system": "automatic",
+      "statement": "Constraint enforcement pattern found in architecture-destroyer.js",
+      "description": "Constraint enforcement pattern found in architecture-destroyer.js",
+      "scope": {
+        "files": [
+          "architecture-destroyer.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: try\\s*\\{",
+      "status": "suspected",
+      "confidence": 0.65,
+      "owner": "architecture-destroyer",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "try\\s*\\{"
+        }
+      },
+      "source_file": "architecture-destroyer.js",
+      "detected_at": "2026-02-09T10:07:34.871Z"
+    },
+    {
+      "id": "catch_s____architecture-destroyer_js_",
+      "system": "automatic",
+      "statement": "Constraint enforcement pattern found in architecture-destroyer.js",
+      "description": "Constraint enforcement pattern found in architecture-destroyer.js",
+      "scope": {
+        "files": [
+          "architecture-destroyer.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: catch\\s*\\(",
+      "status": "suspected",
+      "confidence": 0.65,
+      "owner": "architecture-destroyer",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "catch\\s*\\("
+        }
+      },
+      "source_file": "architecture-destroyer.js",
+      "detected_at": "2026-02-09T10:07:34.871Z"
+    },
+    {
+      "id": "error__message_architecture-destroyer_js_",
+      "system": "automatic",
+      "statement": "Constraint enforcement pattern found in architecture-destroyer.js",
+      "description": "Constraint enforcement pattern found in architecture-destroyer.js",
+      "scope": {
+        "files": [
+          "architecture-destroyer.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: error\\.message",
+      "status": "suspected",
+      "confidence": 0.5,
+      "owner": "architecture-destroyer",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "error\\.message"
+        }
+      },
+      "source_file": "architecture-destroyer.js",
+      "detected_at": "2026-02-09T10:07:34.871Z"
+    },
+    {
+      "id": "VIOLATION_architecture-destroyer_js_288",
+      "system": "automatic",
+      "statement": "Explicit violation marker found in architecture-destroyer.js: 'VIOLATION' at position 288",
+      "description": "Explicit violation marker found in architecture-destroyer.js: 'VIOLATION' at position 288",
+      "scope": {
+        "files": [
+          "architecture-destroyer.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: VIOLATION",
+      "status": "suspected",
+      "confidence": 0.7,
+      "owner": "architecture-destroyer",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "VIOLATION"
+        }
+      },
+      "source_file": "architecture-destroyer.js",
+      "position": 288,
+      "detected_at": "2026-02-09T10:07:34.871Z"
+    },
+    {
+      "id": "schema_arcvision_context_architecture_authority_ledger_json_11",
+      "system": "automatic",
+      "statement": "Schema definition found in arcvision_context/architecture.authority.ledger.json: 'schema' at position 11",
+      "description": "Schema definition found in arcvision_context/architecture.authority.ledger.json: 'schema' at position 11",
+      "scope": {
+        "files": [
+          "arcvision_context/architecture.authority.ledger.json"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: schema",
+      "status": "suspected",
+      "confidence": 0.5,
+      "owner": "architecture.authority.ledger",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "schema"
+        }
+      },
+      "source_file": "arcvision_context/architecture.authority.ledger.json",
+      "position": 11,
+      "detected_at": "2026-02-09T10:07:34.872Z"
+    },
+    {
+      "id": "VIOLATION_blocked-legacy-monolith_package_json_787",
+      "system": "automatic",
+      "statement": "Explicit violation marker found in blocked-legacy-monolith/package.json: 'violation' at position 787",
+      "description": "Explicit violation marker found in blocked-legacy-monolith/package.json: 'violation' at position 787",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/package.json"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: VIOLATION",
+      "status": "suspected",
+      "confidence": 0.5,
+      "owner": "package",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "VIOLATION"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/package.json",
+      "position": 787,
+      "detected_at": "2026-02-09T10:07:34.872Z"
+    },
+    {
+      "id": "VIOLATION_blocked-legacy-monolith_src_emailService_js_64",
+      "system": "automatic",
+      "statement": "Explicit violation marker found in blocked-legacy-monolith/src/emailService.js: 'violation' at position 64",
+      "description": "Explicit violation marker found in blocked-legacy-monolith/src/emailService.js: 'violation' at position 64",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/emailService.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: VIOLATION",
+      "status": "suspected",
+      "confidence": 0.7,
+      "owner": "emailService",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "VIOLATION"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/emailService.js",
+      "position": 64,
+      "detected_at": "2026-02-09T10:07:34.872Z"
+    },
+    {
+      "id": "VIOLATION_blocked-legacy-monolith_src_emailService_js_150",
+      "system": "automatic",
+      "statement": "Explicit violation marker found in blocked-legacy-monolith/src/emailService.js: 'VIOLATION' at position 150",
+      "description": "Explicit violation marker found in blocked-legacy-monolith/src/emailService.js: 'VIOLATION' at position 150",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/emailService.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: VIOLATION",
+      "status": "suspected",
+      "confidence": 0.7,
+      "owner": "emailService",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "VIOLATION"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/emailService.js",
+      "position": 150,
+      "detected_at": "2026-02-09T10:07:34.872Z"
+    },
+    {
+      "id": "VIOLATION_blocked-legacy-monolith_src_emailService_js_744",
+      "system": "automatic",
+      "statement": "Explicit violation marker found in blocked-legacy-monolith/src/emailService.js: 'Violation' at position 744",
+      "description": "Explicit violation marker found in blocked-legacy-monolith/src/emailService.js: 'Violation' at position 744",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/emailService.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: VIOLATION",
+      "status": "suspected",
+      "confidence": 0.7,
+      "owner": "emailService",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "VIOLATION"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/emailService.js",
+      "position": 744,
+      "detected_at": "2026-02-09T10:07:34.872Z"
+    },
+    {
+      "id": "BLOCKED_blocked-legacy-monolith_src_emailService_js_160",
+      "system": "automatic",
+      "statement": "Blocking architectural pattern found in blocked-legacy-monolith/src/emailService.js: 'BLOCKED' at position 160",
+      "description": "Blocking architectural pattern found in blocked-legacy-monolith/src/emailService.js: 'BLOCKED' at position 160",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/emailService.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: BLOCKED",
+      "status": "suspected",
+      "confidence": 0.7,
+      "owner": "emailService",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "BLOCKED"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/emailService.js",
+      "position": 160,
+      "detected_at": "2026-02-09T10:07:34.872Z"
+    },
+    {
+      "id": "try_s____blocked-legacy-monolith_src_index_js_",
+      "system": "automatic",
+      "statement": "Constraint enforcement pattern found in blocked-legacy-monolith/src/index.js",
+      "description": "Constraint enforcement pattern found in blocked-legacy-monolith/src/index.js",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/index.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: try\\s*\\{",
+      "status": "suspected",
+      "confidence": 0.5,
+      "owner": "index",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "try\\s*\\{"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/index.js",
+      "detected_at": "2026-02-09T10:07:34.873Z"
+    },
+    {
+      "id": "catch_s____blocked-legacy-monolith_src_index_js_",
+      "system": "automatic",
+      "statement": "Constraint enforcement pattern found in blocked-legacy-monolith/src/index.js",
+      "description": "Constraint enforcement pattern found in blocked-legacy-monolith/src/index.js",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/index.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: catch\\s*\\(",
+      "status": "suspected",
+      "confidence": 0.5,
+      "owner": "index",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "catch\\s*\\("
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/index.js",
+      "detected_at": "2026-02-09T10:07:34.873Z"
+    },
+    {
+      "id": "error__message_blocked-legacy-monolith_src_index_js_",
+      "system": "automatic",
+      "statement": "Constraint enforcement pattern found in blocked-legacy-monolith/src/index.js",
+      "description": "Constraint enforcement pattern found in blocked-legacy-monolith/src/index.js",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/index.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: error\\.message",
+      "status": "suspected",
+      "confidence": 0.5,
+      "owner": "index",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "error\\.message"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/index.js",
+      "detected_at": "2026-02-09T10:07:34.873Z"
+    },
+    {
+      "id": "setState_s____blocked-legacy-monolith_src_index_js_",
+      "system": "automatic",
+      "statement": "State transition constraint pattern found in blocked-legacy-monolith/src/index.js",
+      "description": "State transition constraint pattern found in blocked-legacy-monolith/src/index.js",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/index.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: setState\\s*\\(",
+      "status": "suspected",
+      "confidence": 0.65,
+      "owner": "index",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "setState\\s*\\("
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/index.js",
+      "detected_at": "2026-02-09T10:07:34.873Z"
+    },
+    {
+      "id": "state___blocked-legacy-monolith_src_index_js_",
+      "system": "automatic",
+      "statement": "State transition constraint pattern found in blocked-legacy-monolith/src/index.js",
+      "description": "State transition constraint pattern found in blocked-legacy-monolith/src/index.js",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/index.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: state\\.",
+      "status": "suspected",
+      "confidence": 0.75,
+      "owner": "index",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "state\\."
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/index.js",
+      "detected_at": "2026-02-09T10:07:34.873Z"
+    },
+    {
+      "id": "state_s___s__blocked-legacy-monolith_src_index_js_",
+      "system": "automatic",
+      "statement": "State transition constraint pattern found in blocked-legacy-monolith/src/index.js",
+      "description": "State transition constraint pattern found in blocked-legacy-monolith/src/index.js",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/index.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: state\\s*=\\s*",
+      "status": "suspected",
+      "confidence": 0.65,
+      "owner": "index",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "state\\s*=\\s*"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/index.js",
+      "detected_at": "2026-02-09T10:07:34.873Z"
+    },
+    {
+      "id": "VIOLATION_blocked-legacy-monolith_src_index_js_808",
+      "system": "automatic",
+      "statement": "Explicit violation marker found in blocked-legacy-monolith/src/index.js: 'VIOLATION' at position 808",
+      "description": "Explicit violation marker found in blocked-legacy-monolith/src/index.js: 'VIOLATION' at position 808",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/index.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: VIOLATION",
+      "status": "suspected",
+      "confidence": 0.7,
+      "owner": "index",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "VIOLATION"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/index.js",
+      "position": 808,
+      "detected_at": "2026-02-09T10:07:34.873Z"
+    },
+    {
+      "id": "VIOLATION_blocked-legacy-monolith_src_index_js_1133",
+      "system": "automatic",
+      "statement": "Explicit violation marker found in blocked-legacy-monolith/src/index.js: 'Violation' at position 1133",
+      "description": "Explicit violation marker found in blocked-legacy-monolith/src/index.js: 'Violation' at position 1133",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/index.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: VIOLATION",
+      "status": "suspected",
+      "confidence": 0.7,
+      "owner": "index",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "VIOLATION"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/index.js",
+      "position": 1133,
+      "detected_at": "2026-02-09T10:07:34.873Z"
+    },
+    {
+      "id": "should__be_blocked-legacy-monolith_src_index_js_2198",
+      "system": "automatic",
+      "statement": "Should-be pattern found in blocked-legacy-monolith/src/index.js: 'should be' at position 2198",
+      "description": "Should-be pattern found in blocked-legacy-monolith/src/index.js: 'should be' at position 2198",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/index.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: should.*be",
+      "status": "suspected",
+      "confidence": 0.5,
+      "owner": "index",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "should.*be"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/index.js",
+      "position": 2198,
+      "detected_at": "2026-02-09T10:07:34.873Z"
+    },
+    {
+      "id": "validat_e_ion__blocked-legacy-monolith_src_index_js_1614",
+      "system": "automatic",
+      "statement": "Validation pattern found in blocked-legacy-monolith/src/index.js: 'validation' at position 1614",
+      "description": "Validation pattern found in blocked-legacy-monolith/src/index.js: 'validation' at position 1614",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/index.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: validat(e|ion)",
+      "status": "suspected",
+      "confidence": 0.5,
+      "owner": "index",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "validat(e|ion)"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/index.js",
+      "position": 1614,
+      "detected_at": "2026-02-09T10:07:34.873Z"
+    },
+    {
+      "id": "setState_blocked-legacy-monolith_src_index_js_1890",
+      "system": "automatic",
+      "statement": "State setter found in blocked-legacy-monolith/src/index.js: 'setState' at position 1890",
+      "description": "State setter found in blocked-legacy-monolith/src/index.js: 'setState' at position 1890",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/index.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: setState",
+      "status": "suspected",
+      "confidence": 0.65,
+      "owner": "index",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "setState"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/index.js",
+      "position": 1890,
+      "detected_at": "2026-02-09T10:07:34.873Z"
+    },
+    {
+      "id": "joi_blocked-legacy-monolith_src_index_js_2366",
+      "system": "automatic",
+      "statement": "Joi validation schema found in blocked-legacy-monolith/src/index.js: 'JOI' at position 2366",
+      "description": "Joi validation schema found in blocked-legacy-monolith/src/index.js: 'JOI' at position 2366",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/index.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: joi",
+      "status": "suspected",
+      "confidence": 0.5,
+      "owner": "index",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "joi"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/index.js",
+      "position": 2366,
+      "detected_at": "2026-02-09T10:07:34.873Z"
+    },
+    {
+      "id": "function_s_validate_w__blocked-legacy-monolith_src_paymentProcessor_js_1909",
+      "system": "automatic",
+      "statement": "Validation function pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 1 matches",
+      "description": "Validation function pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 1 matches",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/paymentProcessor.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: function\\s+validate\\w+",
+      "status": "suspected",
+      "confidence": 0.7,
+      "owner": "paymentProcessor",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "function\\s+validate\\w+"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/paymentProcessor.js",
+      "position": 1909,
+      "detected_at": "2026-02-09T10:07:34.874Z"
+    },
+    {
+      "id": "validate_A-Z__blocked-legacy-monolith_src_paymentProcessor_js_1927",
+      "system": "automatic",
+      "statement": "Validate function pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 'validateP' at position 1927",
+      "description": "Validate function pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 'validateP' at position 1927",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/paymentProcessor.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: validate[A-Z]",
+      "status": "suspected",
+      "confidence": 0.7999999999999999,
+      "owner": "paymentProcessor",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "validate[A-Z]"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/paymentProcessor.js",
+      "position": 1927,
+      "detected_at": "2026-02-09T10:07:34.874Z"
+    },
+    {
+      "id": "VIOLATION_blocked-legacy-monolith_src_paymentProcessor_js_68",
+      "system": "automatic",
+      "statement": "Explicit violation marker found in blocked-legacy-monolith/src/paymentProcessor.js: 'violation' at position 68",
+      "description": "Explicit violation marker found in blocked-legacy-monolith/src/paymentProcessor.js: 'violation' at position 68",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/paymentProcessor.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: VIOLATION",
+      "status": "suspected",
+      "confidence": 0.7,
+      "owner": "paymentProcessor",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "VIOLATION"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/paymentProcessor.js",
+      "position": 68,
+      "detected_at": "2026-02-09T10:07:34.874Z"
+    },
+    {
+      "id": "VIOLATION_blocked-legacy-monolith_src_paymentProcessor_js_157",
+      "system": "automatic",
+      "statement": "Explicit violation marker found in blocked-legacy-monolith/src/paymentProcessor.js: 'VIOLATION' at position 157",
+      "description": "Explicit violation marker found in blocked-legacy-monolith/src/paymentProcessor.js: 'VIOLATION' at position 157",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/paymentProcessor.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: VIOLATION",
+      "status": "suspected",
+      "confidence": 0.7,
+      "owner": "paymentProcessor",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "VIOLATION"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/paymentProcessor.js",
+      "position": 157,
+      "detected_at": "2026-02-09T10:07:34.874Z"
+    },
+    {
+      "id": "VIOLATION_blocked-legacy-monolith_src_paymentProcessor_js_1857",
+      "system": "automatic",
+      "statement": "Explicit violation marker found in blocked-legacy-monolith/src/paymentProcessor.js: 'Violation' at position 1857",
+      "description": "Explicit violation marker found in blocked-legacy-monolith/src/paymentProcessor.js: 'Violation' at position 1857",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/paymentProcessor.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: VIOLATION",
+      "status": "suspected",
+      "confidence": 0.7,
+      "owner": "paymentProcessor",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "VIOLATION"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/paymentProcessor.js",
+      "position": 1857,
+      "detected_at": "2026-02-09T10:07:34.874Z"
+    },
+    {
+      "id": "BLOCKED_blocked-legacy-monolith_src_paymentProcessor_js_167",
+      "system": "automatic",
+      "statement": "Blocking architectural pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 'BLOCKED' at position 167",
+      "description": "Blocking architectural pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 'BLOCKED' at position 167",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/paymentProcessor.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: BLOCKED",
+      "status": "suspected",
+      "confidence": 0.7,
+      "owner": "paymentProcessor",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "BLOCKED"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/paymentProcessor.js",
+      "position": 167,
+      "detected_at": "2026-02-09T10:07:34.874Z"
+    },
+    {
+      "id": "validat_e_ion__blocked-legacy-monolith_src_paymentProcessor_js_1926",
+      "system": "automatic",
+      "statement": "Validation pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 'validate' at position 1926",
+      "description": "Validation pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 'validate' at position 1926",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/src/paymentProcessor.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: validat(e|ion)",
+      "status": "suspected",
+      "confidence": 0.6,
+      "owner": "paymentProcessor",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "validat(e|ion)"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/src/paymentProcessor.js",
+      "position": 1926,
+      "detected_at": "2026-02-09T10:07:34.874Z"
+    },
+    {
+      "id": "state_s___s__blocked-legacy-monolith_test-violation_js_",
+      "system": "automatic",
+      "statement": "State transition constraint pattern found in blocked-legacy-monolith/test-violation.js",
+      "description": "State transition constraint pattern found in blocked-legacy-monolith/test-violation.js",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/test-violation.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: state\\s*=\\s*",
+      "status": "suspected",
+      "confidence": 0.65,
+      "owner": "test-violation",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "state\\s*=\\s*"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/test-violation.js",
+      "detected_at": "2026-02-09T10:07:34.874Z"
+    },
+    {
+      "id": "VIOLATION_blocked-legacy-monolith_test-violation_js_43",
+      "system": "automatic",
+      "statement": "Explicit violation marker found in blocked-legacy-monolith/test-violation.js: 'violation' at position 43",
+      "description": "Explicit violation marker found in blocked-legacy-monolith/test-violation.js: 'violation' at position 43",
+      "scope": {
+        "files": [
+          "blocked-legacy-monolith/test-violation.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: VIOLATION",
+      "status": "suspected",
+      "confidence": 0.65,
+      "owner": "test-violation",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "VIOLATION"
+        }
+      },
+      "source_file": "blocked-legacy-monolith/test-violation.js",
+      "position": 43,
+      "detected_at": "2026-02-09T10:07:34.874Z"
+    },
+    {
+      "id": "try_s____chaos-monkey_js_",
+      "system": "automatic",
+      "statement": "Constraint enforcement pattern found in chaos-monkey.js",
+      "description": "Constraint enforcement pattern found in chaos-monkey.js",
+      "scope": {
+        "files": [
+          "chaos-monkey.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: try\\s*\\{",
+      "status": "suspected",
+      "confidence": 0.65,
+      "owner": "chaos-monkey",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "try\\s*\\{"
+        }
+      },
+      "source_file": "chaos-monkey.js",
+      "detected_at": "2026-02-09T10:07:34.875Z"
+    },
+    {
+      "id": "catch_s____chaos-monkey_js_",
+      "system": "automatic",
+      "statement": "Constraint enforcement pattern found in chaos-monkey.js",
+      "description": "Constraint enforcement pattern found in chaos-monkey.js",
+      "scope": {
+        "files": [
+          "chaos-monkey.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: catch\\s*\\(",
+      "status": "suspected",
+      "confidence": 0.65,
+      "owner": "chaos-monkey",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "catch\\s*\\("
+        }
+      },
+      "source_file": "chaos-monkey.js",
+      "detected_at": "2026-02-09T10:07:34.875Z"
+    },
+    {
+      "id": "error__message_chaos-monkey_js_",
+      "system": "automatic",
+      "statement": "Constraint enforcement pattern found in chaos-monkey.js",
+      "description": "Constraint enforcement pattern found in chaos-monkey.js",
+      "scope": {
+        "files": [
+          "chaos-monkey.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: error\\.message",
+      "status": "suspected",
+      "confidence": 0.6,
+      "owner": "chaos-monkey",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "error\\.message"
+        }
+      },
+      "source_file": "chaos-monkey.js",
+      "detected_at": "2026-02-09T10:07:34.875Z"
+    },
+    {
+      "id": "VIOLATION_chaos-monkey_js_413",
+      "system": "automatic",
+      "statement": "Explicit violation marker found in chaos-monkey.js: 'VIOLATION' at position 413",
+      "description": "Explicit violation marker found in chaos-monkey.js: 'VIOLATION' at position 413",
+      "scope": {
+        "files": [
+          "chaos-monkey.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: VIOLATION",
+      "status": "suspected",
+      "confidence": 0.7,
+      "owner": "chaos-monkey",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "VIOLATION"
+        }
+      },
+      "source_file": "chaos-monkey.js",
+      "position": 413,
+      "detected_at": "2026-02-09T10:07:34.875Z"
+    },
+    {
+      "id": "joi_chaos-monkey_js_3487",
+      "system": "automatic",
+      "statement": "Joi validation schema found in chaos-monkey.js: 'joi' at position 3487",
+      "description": "Joi validation schema found in chaos-monkey.js: 'joi' at position 3487",
+      "scope": {
+        "files": [
+          "chaos-monkey.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: joi",
+      "status": "suspected",
+      "confidence": 0.5,
+      "owner": "chaos-monkey",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "joi"
+        }
+      },
+      "source_file": "chaos-monkey.js",
+      "position": 3487,
+      "detected_at": "2026-02-09T10:07:34.875Z"
+    },
+    {
+      "id": "should__be_risky-microservices-concerns_services_shared-models_index_js_489",
+      "system": "automatic",
+      "statement": "Should-be pattern found in risky-microservices-concerns/services/shared-models/index.js: 'should be' at position 489",
+      "description": "Should-be pattern found in risky-microservices-concerns/services/shared-models/index.js: 'should be' at position 489",
+      "scope": {
+        "files": [
+          "risky-microservices-concerns/services/shared-models/index.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: should.*be",
+      "status": "suspected",
+      "confidence": 0.6,
+      "owner": "index",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "should.*be"
+        }
+      },
+      "source_file": "risky-microservices-concerns/services/shared-models/index.js",
+      "position": 489,
+      "detected_at": "2026-02-09T10:07:34.875Z"
+    },
+    {
+      "id": "schema_risky-microservices-concerns_services_shared-models_index_js_118",
+      "system": "automatic",
+      "statement": "Schema definition found in risky-microservices-concerns/services/shared-models/index.js: 'Schema' at position 118",
+      "description": "Schema definition found in risky-microservices-concerns/services/shared-models/index.js: 'Schema' at position 118",
+      "scope": {
+        "files": [
+          "risky-microservices-concerns/services/shared-models/index.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: schema",
+      "status": "suspected",
+      "confidence": 0.8,
+      "owner": "index",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "schema"
+        }
+      },
+      "source_file": "risky-microservices-concerns/services/shared-models/index.js",
+      "position": 118,
+      "detected_at": "2026-02-09T10:07:34.875Z"
+    },
+    {
+      "id": "try_s____risky-microservices-concerns_services_user-service_src_server_js_",
+      "system": "automatic",
+      "statement": "Constraint enforcement pattern found in risky-microservices-concerns/services/user-service/src/server.js",
+      "description": "Constraint enforcement pattern found in risky-microservices-concerns/services/user-service/src/server.js",
+      "scope": {
+        "files": [
+          "risky-microservices-concerns/services/user-service/src/server.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: try\\s*\\{",
+      "status": "suspected",
+      "confidence": 0.65,
+      "owner": "server",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "try\\s*\\{"
+        }
+      },
+      "source_file": "risky-microservices-concerns/services/user-service/src/server.js",
+      "detected_at": "2026-02-09T10:07:34.876Z"
+    },
+    {
+      "id": "catch_s____risky-microservices-concerns_services_user-service_src_server_js_",
+      "system": "automatic",
+      "statement": "Constraint enforcement pattern found in risky-microservices-concerns/services/user-service/src/server.js",
+      "description": "Constraint enforcement pattern found in risky-microservices-concerns/services/user-service/src/server.js",
+      "scope": {
+        "files": [
+          "risky-microservices-concerns/services/user-service/src/server.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: catch\\s*\\(",
+      "status": "suspected",
+      "confidence": 0.65,
+      "owner": "server",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "catch\\s*\\("
+        }
+      },
+      "source_file": "risky-microservices-concerns/services/user-service/src/server.js",
+      "detected_at": "2026-02-09T10:07:34.876Z"
+    },
+    {
+      "id": "error__message_risky-microservices-concerns_services_user-service_src_server_js_",
+      "system": "automatic",
+      "statement": "Constraint enforcement pattern found in risky-microservices-concerns/services/user-service/src/server.js",
+      "description": "Constraint enforcement pattern found in risky-microservices-concerns/services/user-service/src/server.js",
+      "scope": {
+        "files": [
+          "risky-microservices-concerns/services/user-service/src/server.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: error\\.message",
+      "status": "suspected",
+      "confidence": 0.5,
+      "owner": "server",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "error\\.message"
+        }
+      },
+      "source_file": "risky-microservices-concerns/services/user-service/src/server.js",
+      "detected_at": "2026-02-09T10:07:34.876Z"
+    },
+    {
+      "id": "VIOLATION_risky-microservices-concerns_services_user-service_src_server_js_1023",
+      "system": "automatic",
+      "statement": "Explicit violation marker found in risky-microservices-concerns/services/user-service/src/server.js: 'VIOLATION' at position 1023",
+      "description": "Explicit violation marker found in risky-microservices-concerns/services/user-service/src/server.js: 'VIOLATION' at position 1023",
+      "scope": {
+        "files": [
+          "risky-microservices-concerns/services/user-service/src/server.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: VIOLATION",
+      "status": "suspected",
+      "confidence": 0.5,
+      "owner": "server",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "VIOLATION"
+        }
+      },
+      "source_file": "risky-microservices-concerns/services/user-service/src/server.js",
+      "position": 1023,
+      "detected_at": "2026-02-09T10:07:34.876Z"
+    },
+    {
+      "id": "BLOCKED_risky-microservices-concerns_services_user-service_src_server_js_367",
+      "system": "automatic",
+      "statement": "Blocking architectural pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'BLOCKED' at position 367",
+      "description": "Blocking architectural pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'BLOCKED' at position 367",
+      "scope": {
+        "files": [
+          "risky-microservices-concerns/services/user-service/src/server.js"
+        ]
+      },
+      "critical_path": true,
+      "assertion": "Pattern: BLOCKED",
+      "status": "suspected",
+      "confidence": 0.6,
+      "owner": "server",
+      "violated_by": [],
+      "severity": "block",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "BLOCKED"
+        }
+      },
+      "source_file": "risky-microservices-concerns/services/user-service/src/server.js",
+      "position": 367,
+      "detected_at": "2026-02-09T10:07:34.876Z"
+    },
+    {
+      "id": "should__be_risky-microservices-concerns_services_user-service_src_server_js_359",
+      "system": "automatic",
+      "statement": "Should-be pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'should be' at position 359",
+      "description": "Should-be pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'should be' at position 359",
+      "scope": {
+        "files": [
+          "risky-microservices-concerns/services/user-service/src/server.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: should.*be",
+      "status": "suspected",
+      "confidence": 0.6,
+      "owner": "server",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "should.*be"
+        }
+      },
+      "source_file": "risky-microservices-concerns/services/user-service/src/server.js",
+      "position": 359,
+      "detected_at": "2026-02-09T10:07:34.876Z"
+    },
+    {
+      "id": "validat_e_ion__risky-microservices-concerns_services_user-service_src_server_js_1082",
+      "system": "automatic",
+      "statement": "Validation pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'Validate' at position 1082",
+      "description": "Validation pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'Validate' at position 1082",
+      "scope": {
+        "files": [
+          "risky-microservices-concerns/services/user-service/src/server.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: validat(e|ion)",
+      "status": "suspected",
+      "confidence": 0.6,
+      "owner": "server",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "validat(e|ion)"
+        }
+      },
+      "source_file": "risky-microservices-concerns/services/user-service/src/server.js",
+      "position": 1082,
+      "detected_at": "2026-02-09T10:07:34.876Z"
+    },
+    {
+      "id": "validat_e_ion__risky-microservices-concerns_services_user-service_src_server_js_1491",
+      "system": "automatic",
+      "statement": "Validation pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'validation' at position 1491",
+      "description": "Validation pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'validation' at position 1491",
+      "scope": {
+        "files": [
+          "risky-microservices-concerns/services/user-service/src/server.js"
+        ]
+      },
+      "critical_path": false,
+      "assertion": "Pattern: validat(e|ion)",
+      "status": "suspected",
+      "confidence": 0.6,
+      "owner": "server",
+      "violated_by": [],
+      "severity": "risk",
+      "rule": {
+        "type": "pattern",
+        "condition": {
+          "pattern": "validat(e|ion)"
+        }
+      },
+      "source_file": "risky-microservices-concerns/services/user-service/src/server.js",
+      "position": 1491,
+      "detected_at": "2026-02-09T10:07:34.876Z"
+    }
+  ],
+  "invariant_analysis": {
+    "summary": {
+      "total": 46,
+      "critical": 22,
+      "non_critical": 24,
+      "by_scope": {
+        "module": [
+          {
+            "id": "try_s____architecture-destroyer_js_",
+            "system": "automatic",
+            "statement": "Constraint enforcement pattern found in architecture-destroyer.js",
+            "description": "Constraint enforcement pattern found in architecture-destroyer.js",
+            "scope": {
+              "files": [
+                "architecture-destroyer.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: try\\s*\\{",
+            "status": "suspected",
+            "confidence": 0.65,
+            "owner": "architecture-destroyer",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "try\\s*\\{"
+              }
+            },
+            "source_file": "architecture-destroyer.js",
+            "detected_at": "2026-02-09T10:07:34.871Z"
+          },
+          {
+            "id": "catch_s____architecture-destroyer_js_",
+            "system": "automatic",
+            "statement": "Constraint enforcement pattern found in architecture-destroyer.js",
+            "description": "Constraint enforcement pattern found in architecture-destroyer.js",
+            "scope": {
+              "files": [
+                "architecture-destroyer.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: catch\\s*\\(",
+            "status": "suspected",
+            "confidence": 0.65,
+            "owner": "architecture-destroyer",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "catch\\s*\\("
+              }
+            },
+            "source_file": "architecture-destroyer.js",
+            "detected_at": "2026-02-09T10:07:34.871Z"
+          },
+          {
+            "id": "error__message_architecture-destroyer_js_",
+            "system": "automatic",
+            "statement": "Constraint enforcement pattern found in architecture-destroyer.js",
+            "description": "Constraint enforcement pattern found in architecture-destroyer.js",
+            "scope": {
+              "files": [
+                "architecture-destroyer.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: error\\.message",
+            "status": "suspected",
+            "confidence": 0.5,
+            "owner": "architecture-destroyer",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "error\\.message"
+              }
+            },
+            "source_file": "architecture-destroyer.js",
+            "detected_at": "2026-02-09T10:07:34.871Z"
+          },
+          {
+            "id": "VIOLATION_architecture-destroyer_js_288",
+            "system": "automatic",
+            "statement": "Explicit violation marker found in architecture-destroyer.js: 'VIOLATION' at position 288",
+            "description": "Explicit violation marker found in architecture-destroyer.js: 'VIOLATION' at position 288",
+            "scope": {
+              "files": [
+                "architecture-destroyer.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: VIOLATION",
+            "status": "suspected",
+            "confidence": 0.7,
+            "owner": "architecture-destroyer",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "VIOLATION"
+              }
+            },
+            "source_file": "architecture-destroyer.js",
+            "position": 288,
+            "detected_at": "2026-02-09T10:07:34.871Z"
+          },
+          {
+            "id": "schema_arcvision_context_architecture_authority_ledger_json_11",
+            "system": "automatic",
+            "statement": "Schema definition found in arcvision_context/architecture.authority.ledger.json: 'schema' at position 11",
+            "description": "Schema definition found in arcvision_context/architecture.authority.ledger.json: 'schema' at position 11",
+            "scope": {
+              "files": [
+                "arcvision_context/architecture.authority.ledger.json"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: schema",
+            "status": "suspected",
+            "confidence": 0.5,
+            "owner": "architecture.authority.ledger",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "schema"
+              }
+            },
+            "source_file": "arcvision_context/architecture.authority.ledger.json",
+            "position": 11,
+            "detected_at": "2026-02-09T10:07:34.872Z"
+          },
+          {
+            "id": "VIOLATION_blocked-legacy-monolith_package_json_787",
+            "system": "automatic",
+            "statement": "Explicit violation marker found in blocked-legacy-monolith/package.json: 'violation' at position 787",
+            "description": "Explicit violation marker found in blocked-legacy-monolith/package.json: 'violation' at position 787",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/package.json"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: VIOLATION",
+            "status": "suspected",
+            "confidence": 0.5,
+            "owner": "package",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "VIOLATION"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/package.json",
+            "position": 787,
+            "detected_at": "2026-02-09T10:07:34.872Z"
+          },
+          {
+            "id": "VIOLATION_blocked-legacy-monolith_src_emailService_js_64",
+            "system": "automatic",
+            "statement": "Explicit violation marker found in blocked-legacy-monolith/src/emailService.js: 'violation' at position 64",
+            "description": "Explicit violation marker found in blocked-legacy-monolith/src/emailService.js: 'violation' at position 64",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/emailService.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: VIOLATION",
+            "status": "suspected",
+            "confidence": 0.7,
+            "owner": "emailService",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "VIOLATION"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/emailService.js",
+            "position": 64,
+            "detected_at": "2026-02-09T10:07:34.872Z"
+          },
+          {
+            "id": "VIOLATION_blocked-legacy-monolith_src_emailService_js_150",
+            "system": "automatic",
+            "statement": "Explicit violation marker found in blocked-legacy-monolith/src/emailService.js: 'VIOLATION' at position 150",
+            "description": "Explicit violation marker found in blocked-legacy-monolith/src/emailService.js: 'VIOLATION' at position 150",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/emailService.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: VIOLATION",
+            "status": "suspected",
+            "confidence": 0.7,
+            "owner": "emailService",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "VIOLATION"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/emailService.js",
+            "position": 150,
+            "detected_at": "2026-02-09T10:07:34.872Z"
+          },
+          {
+            "id": "VIOLATION_blocked-legacy-monolith_src_emailService_js_744",
+            "system": "automatic",
+            "statement": "Explicit violation marker found in blocked-legacy-monolith/src/emailService.js: 'Violation' at position 744",
+            "description": "Explicit violation marker found in blocked-legacy-monolith/src/emailService.js: 'Violation' at position 744",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/emailService.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: VIOLATION",
+            "status": "suspected",
+            "confidence": 0.7,
+            "owner": "emailService",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "VIOLATION"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/emailService.js",
+            "position": 744,
+            "detected_at": "2026-02-09T10:07:34.872Z"
+          },
+          {
+            "id": "BLOCKED_blocked-legacy-monolith_src_emailService_js_160",
+            "system": "automatic",
+            "statement": "Blocking architectural pattern found in blocked-legacy-monolith/src/emailService.js: 'BLOCKED' at position 160",
+            "description": "Blocking architectural pattern found in blocked-legacy-monolith/src/emailService.js: 'BLOCKED' at position 160",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/emailService.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: BLOCKED",
+            "status": "suspected",
+            "confidence": 0.7,
+            "owner": "emailService",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "BLOCKED"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/emailService.js",
+            "position": 160,
+            "detected_at": "2026-02-09T10:07:34.872Z"
+          },
+          {
+            "id": "try_s____blocked-legacy-monolith_src_index_js_",
+            "system": "automatic",
+            "statement": "Constraint enforcement pattern found in blocked-legacy-monolith/src/index.js",
+            "description": "Constraint enforcement pattern found in blocked-legacy-monolith/src/index.js",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/index.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: try\\s*\\{",
+            "status": "suspected",
+            "confidence": 0.5,
+            "owner": "index",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "try\\s*\\{"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/index.js",
+            "detected_at": "2026-02-09T10:07:34.873Z"
+          },
+          {
+            "id": "catch_s____blocked-legacy-monolith_src_index_js_",
+            "system": "automatic",
+            "statement": "Constraint enforcement pattern found in blocked-legacy-monolith/src/index.js",
+            "description": "Constraint enforcement pattern found in blocked-legacy-monolith/src/index.js",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/index.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: catch\\s*\\(",
+            "status": "suspected",
+            "confidence": 0.5,
+            "owner": "index",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "catch\\s*\\("
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/index.js",
+            "detected_at": "2026-02-09T10:07:34.873Z"
+          },
+          {
+            "id": "error__message_blocked-legacy-monolith_src_index_js_",
+            "system": "automatic",
+            "statement": "Constraint enforcement pattern found in blocked-legacy-monolith/src/index.js",
+            "description": "Constraint enforcement pattern found in blocked-legacy-monolith/src/index.js",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/index.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: error\\.message",
+            "status": "suspected",
+            "confidence": 0.5,
+            "owner": "index",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "error\\.message"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/index.js",
+            "detected_at": "2026-02-09T10:07:34.873Z"
+          },
+          {
+            "id": "setState_s____blocked-legacy-monolith_src_index_js_",
+            "system": "automatic",
+            "statement": "State transition constraint pattern found in blocked-legacy-monolith/src/index.js",
+            "description": "State transition constraint pattern found in blocked-legacy-monolith/src/index.js",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/index.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: setState\\s*\\(",
+            "status": "suspected",
+            "confidence": 0.65,
+            "owner": "index",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "setState\\s*\\("
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/index.js",
+            "detected_at": "2026-02-09T10:07:34.873Z"
+          },
+          {
+            "id": "state___blocked-legacy-monolith_src_index_js_",
+            "system": "automatic",
+            "statement": "State transition constraint pattern found in blocked-legacy-monolith/src/index.js",
+            "description": "State transition constraint pattern found in blocked-legacy-monolith/src/index.js",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/index.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: state\\.",
+            "status": "suspected",
+            "confidence": 0.75,
+            "owner": "index",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "state\\."
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/index.js",
+            "detected_at": "2026-02-09T10:07:34.873Z"
+          },
+          {
+            "id": "state_s___s__blocked-legacy-monolith_src_index_js_",
+            "system": "automatic",
+            "statement": "State transition constraint pattern found in blocked-legacy-monolith/src/index.js",
+            "description": "State transition constraint pattern found in blocked-legacy-monolith/src/index.js",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/index.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: state\\s*=\\s*",
+            "status": "suspected",
+            "confidence": 0.65,
+            "owner": "index",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "state\\s*=\\s*"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/index.js",
+            "detected_at": "2026-02-09T10:07:34.873Z"
+          },
+          {
+            "id": "VIOLATION_blocked-legacy-monolith_src_index_js_808",
+            "system": "automatic",
+            "statement": "Explicit violation marker found in blocked-legacy-monolith/src/index.js: 'VIOLATION' at position 808",
+            "description": "Explicit violation marker found in blocked-legacy-monolith/src/index.js: 'VIOLATION' at position 808",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/index.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: VIOLATION",
+            "status": "suspected",
+            "confidence": 0.7,
+            "owner": "index",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "VIOLATION"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/index.js",
+            "position": 808,
+            "detected_at": "2026-02-09T10:07:34.873Z"
+          },
+          {
+            "id": "VIOLATION_blocked-legacy-monolith_src_index_js_1133",
+            "system": "automatic",
+            "statement": "Explicit violation marker found in blocked-legacy-monolith/src/index.js: 'Violation' at position 1133",
+            "description": "Explicit violation marker found in blocked-legacy-monolith/src/index.js: 'Violation' at position 1133",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/index.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: VIOLATION",
+            "status": "suspected",
+            "confidence": 0.7,
+            "owner": "index",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "VIOLATION"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/index.js",
+            "position": 1133,
+            "detected_at": "2026-02-09T10:07:34.873Z"
+          },
+          {
+            "id": "should__be_blocked-legacy-monolith_src_index_js_2198",
+            "system": "automatic",
+            "statement": "Should-be pattern found in blocked-legacy-monolith/src/index.js: 'should be' at position 2198",
+            "description": "Should-be pattern found in blocked-legacy-monolith/src/index.js: 'should be' at position 2198",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/index.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: should.*be",
+            "status": "suspected",
+            "confidence": 0.5,
+            "owner": "index",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "should.*be"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/index.js",
+            "position": 2198,
+            "detected_at": "2026-02-09T10:07:34.873Z"
+          },
+          {
+            "id": "validat_e_ion__blocked-legacy-monolith_src_index_js_1614",
+            "system": "automatic",
+            "statement": "Validation pattern found in blocked-legacy-monolith/src/index.js: 'validation' at position 1614",
+            "description": "Validation pattern found in blocked-legacy-monolith/src/index.js: 'validation' at position 1614",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/index.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: validat(e|ion)",
+            "status": "suspected",
+            "confidence": 0.5,
+            "owner": "index",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "validat(e|ion)"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/index.js",
+            "position": 1614,
+            "detected_at": "2026-02-09T10:07:34.873Z"
+          },
+          {
+            "id": "setState_blocked-legacy-monolith_src_index_js_1890",
+            "system": "automatic",
+            "statement": "State setter found in blocked-legacy-monolith/src/index.js: 'setState' at position 1890",
+            "description": "State setter found in blocked-legacy-monolith/src/index.js: 'setState' at position 1890",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/index.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: setState",
+            "status": "suspected",
+            "confidence": 0.65,
+            "owner": "index",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "setState"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/index.js",
+            "position": 1890,
+            "detected_at": "2026-02-09T10:07:34.873Z"
+          },
+          {
+            "id": "joi_blocked-legacy-monolith_src_index_js_2366",
+            "system": "automatic",
+            "statement": "Joi validation schema found in blocked-legacy-monolith/src/index.js: 'JOI' at position 2366",
+            "description": "Joi validation schema found in blocked-legacy-monolith/src/index.js: 'JOI' at position 2366",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/index.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: joi",
+            "status": "suspected",
+            "confidence": 0.5,
+            "owner": "index",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "joi"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/index.js",
+            "position": 2366,
+            "detected_at": "2026-02-09T10:07:34.873Z"
+          },
+          {
+            "id": "function_s_validate_w__blocked-legacy-monolith_src_paymentProcessor_js_1909",
+            "system": "automatic",
+            "statement": "Validation function pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 1 matches",
+            "description": "Validation function pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 1 matches",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/paymentProcessor.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: function\\s+validate\\w+",
+            "status": "suspected",
+            "confidence": 0.7,
+            "owner": "paymentProcessor",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "function\\s+validate\\w+"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/paymentProcessor.js",
+            "position": 1909,
+            "detected_at": "2026-02-09T10:07:34.874Z"
+          },
+          {
+            "id": "validate_A-Z__blocked-legacy-monolith_src_paymentProcessor_js_1927",
+            "system": "automatic",
+            "statement": "Validate function pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 'validateP' at position 1927",
+            "description": "Validate function pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 'validateP' at position 1927",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/paymentProcessor.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: validate[A-Z]",
+            "status": "suspected",
+            "confidence": 0.7999999999999999,
+            "owner": "paymentProcessor",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "validate[A-Z]"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/paymentProcessor.js",
+            "position": 1927,
+            "detected_at": "2026-02-09T10:07:34.874Z"
+          },
+          {
+            "id": "VIOLATION_blocked-legacy-monolith_src_paymentProcessor_js_68",
+            "system": "automatic",
+            "statement": "Explicit violation marker found in blocked-legacy-monolith/src/paymentProcessor.js: 'violation' at position 68",
+            "description": "Explicit violation marker found in blocked-legacy-monolith/src/paymentProcessor.js: 'violation' at position 68",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/paymentProcessor.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: VIOLATION",
+            "status": "suspected",
+            "confidence": 0.7,
+            "owner": "paymentProcessor",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "VIOLATION"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/paymentProcessor.js",
+            "position": 68,
+            "detected_at": "2026-02-09T10:07:34.874Z"
+          },
+          {
+            "id": "VIOLATION_blocked-legacy-monolith_src_paymentProcessor_js_157",
+            "system": "automatic",
+            "statement": "Explicit violation marker found in blocked-legacy-monolith/src/paymentProcessor.js: 'VIOLATION' at position 157",
+            "description": "Explicit violation marker found in blocked-legacy-monolith/src/paymentProcessor.js: 'VIOLATION' at position 157",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/paymentProcessor.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: VIOLATION",
+            "status": "suspected",
+            "confidence": 0.7,
+            "owner": "paymentProcessor",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "VIOLATION"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/paymentProcessor.js",
+            "position": 157,
+            "detected_at": "2026-02-09T10:07:34.874Z"
+          },
+          {
+            "id": "VIOLATION_blocked-legacy-monolith_src_paymentProcessor_js_1857",
+            "system": "automatic",
+            "statement": "Explicit violation marker found in blocked-legacy-monolith/src/paymentProcessor.js: 'Violation' at position 1857",
+            "description": "Explicit violation marker found in blocked-legacy-monolith/src/paymentProcessor.js: 'Violation' at position 1857",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/paymentProcessor.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: VIOLATION",
+            "status": "suspected",
+            "confidence": 0.7,
+            "owner": "paymentProcessor",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "VIOLATION"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/paymentProcessor.js",
+            "position": 1857,
+            "detected_at": "2026-02-09T10:07:34.874Z"
+          },
+          {
+            "id": "BLOCKED_blocked-legacy-monolith_src_paymentProcessor_js_167",
+            "system": "automatic",
+            "statement": "Blocking architectural pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 'BLOCKED' at position 167",
+            "description": "Blocking architectural pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 'BLOCKED' at position 167",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/paymentProcessor.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: BLOCKED",
+            "status": "suspected",
+            "confidence": 0.7,
+            "owner": "paymentProcessor",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "BLOCKED"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/paymentProcessor.js",
+            "position": 167,
+            "detected_at": "2026-02-09T10:07:34.874Z"
+          },
+          {
+            "id": "validat_e_ion__blocked-legacy-monolith_src_paymentProcessor_js_1926",
+            "system": "automatic",
+            "statement": "Validation pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 'validate' at position 1926",
+            "description": "Validation pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 'validate' at position 1926",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/src/paymentProcessor.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: validat(e|ion)",
+            "status": "suspected",
+            "confidence": 0.6,
+            "owner": "paymentProcessor",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "validat(e|ion)"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/src/paymentProcessor.js",
+            "position": 1926,
+            "detected_at": "2026-02-09T10:07:34.874Z"
+          },
+          {
+            "id": "state_s___s__blocked-legacy-monolith_test-violation_js_",
+            "system": "automatic",
+            "statement": "State transition constraint pattern found in blocked-legacy-monolith/test-violation.js",
+            "description": "State transition constraint pattern found in blocked-legacy-monolith/test-violation.js",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/test-violation.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: state\\s*=\\s*",
+            "status": "suspected",
+            "confidence": 0.65,
+            "owner": "test-violation",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "state\\s*=\\s*"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/test-violation.js",
+            "detected_at": "2026-02-09T10:07:34.874Z"
+          },
+          {
+            "id": "VIOLATION_blocked-legacy-monolith_test-violation_js_43",
+            "system": "automatic",
+            "statement": "Explicit violation marker found in blocked-legacy-monolith/test-violation.js: 'violation' at position 43",
+            "description": "Explicit violation marker found in blocked-legacy-monolith/test-violation.js: 'violation' at position 43",
+            "scope": {
+              "files": [
+                "blocked-legacy-monolith/test-violation.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: VIOLATION",
+            "status": "suspected",
+            "confidence": 0.65,
+            "owner": "test-violation",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "VIOLATION"
+              }
+            },
+            "source_file": "blocked-legacy-monolith/test-violation.js",
+            "position": 43,
+            "detected_at": "2026-02-09T10:07:34.874Z"
+          },
+          {
+            "id": "try_s____chaos-monkey_js_",
+            "system": "automatic",
+            "statement": "Constraint enforcement pattern found in chaos-monkey.js",
+            "description": "Constraint enforcement pattern found in chaos-monkey.js",
+            "scope": {
+              "files": [
+                "chaos-monkey.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: try\\s*\\{",
+            "status": "suspected",
+            "confidence": 0.65,
+            "owner": "chaos-monkey",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "try\\s*\\{"
+              }
+            },
+            "source_file": "chaos-monkey.js",
+            "detected_at": "2026-02-09T10:07:34.875Z"
+          },
+          {
+            "id": "catch_s____chaos-monkey_js_",
+            "system": "automatic",
+            "statement": "Constraint enforcement pattern found in chaos-monkey.js",
+            "description": "Constraint enforcement pattern found in chaos-monkey.js",
+            "scope": {
+              "files": [
+                "chaos-monkey.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: catch\\s*\\(",
+            "status": "suspected",
+            "confidence": 0.65,
+            "owner": "chaos-monkey",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "catch\\s*\\("
+              }
+            },
+            "source_file": "chaos-monkey.js",
+            "detected_at": "2026-02-09T10:07:34.875Z"
+          },
+          {
+            "id": "error__message_chaos-monkey_js_",
+            "system": "automatic",
+            "statement": "Constraint enforcement pattern found in chaos-monkey.js",
+            "description": "Constraint enforcement pattern found in chaos-monkey.js",
+            "scope": {
+              "files": [
+                "chaos-monkey.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: error\\.message",
+            "status": "suspected",
+            "confidence": 0.6,
+            "owner": "chaos-monkey",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "error\\.message"
+              }
+            },
+            "source_file": "chaos-monkey.js",
+            "detected_at": "2026-02-09T10:07:34.875Z"
+          },
+          {
+            "id": "VIOLATION_chaos-monkey_js_413",
+            "system": "automatic",
+            "statement": "Explicit violation marker found in chaos-monkey.js: 'VIOLATION' at position 413",
+            "description": "Explicit violation marker found in chaos-monkey.js: 'VIOLATION' at position 413",
+            "scope": {
+              "files": [
+                "chaos-monkey.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: VIOLATION",
+            "status": "suspected",
+            "confidence": 0.7,
+            "owner": "chaos-monkey",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "VIOLATION"
+              }
+            },
+            "source_file": "chaos-monkey.js",
+            "position": 413,
+            "detected_at": "2026-02-09T10:07:34.875Z"
+          },
+          {
+            "id": "joi_chaos-monkey_js_3487",
+            "system": "automatic",
+            "statement": "Joi validation schema found in chaos-monkey.js: 'joi' at position 3487",
+            "description": "Joi validation schema found in chaos-monkey.js: 'joi' at position 3487",
+            "scope": {
+              "files": [
+                "chaos-monkey.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: joi",
+            "status": "suspected",
+            "confidence": 0.5,
+            "owner": "chaos-monkey",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "joi"
+              }
+            },
+            "source_file": "chaos-monkey.js",
+            "position": 3487,
+            "detected_at": "2026-02-09T10:07:34.875Z"
+          },
+          {
+            "id": "should__be_risky-microservices-concerns_services_shared-models_index_js_489",
+            "system": "automatic",
+            "statement": "Should-be pattern found in risky-microservices-concerns/services/shared-models/index.js: 'should be' at position 489",
+            "description": "Should-be pattern found in risky-microservices-concerns/services/shared-models/index.js: 'should be' at position 489",
+            "scope": {
+              "files": [
+                "risky-microservices-concerns/services/shared-models/index.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: should.*be",
+            "status": "suspected",
+            "confidence": 0.6,
+            "owner": "index",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "should.*be"
+              }
+            },
+            "source_file": "risky-microservices-concerns/services/shared-models/index.js",
+            "position": 489,
+            "detected_at": "2026-02-09T10:07:34.875Z"
+          },
+          {
+            "id": "schema_risky-microservices-concerns_services_shared-models_index_js_118",
+            "system": "automatic",
+            "statement": "Schema definition found in risky-microservices-concerns/services/shared-models/index.js: 'Schema' at position 118",
+            "description": "Schema definition found in risky-microservices-concerns/services/shared-models/index.js: 'Schema' at position 118",
+            "scope": {
+              "files": [
+                "risky-microservices-concerns/services/shared-models/index.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: schema",
+            "status": "suspected",
+            "confidence": 0.8,
+            "owner": "index",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "schema"
+              }
+            },
+            "source_file": "risky-microservices-concerns/services/shared-models/index.js",
+            "position": 118,
+            "detected_at": "2026-02-09T10:07:34.875Z"
+          },
+          {
+            "id": "try_s____risky-microservices-concerns_services_user-service_src_server_js_",
+            "system": "automatic",
+            "statement": "Constraint enforcement pattern found in risky-microservices-concerns/services/user-service/src/server.js",
+            "description": "Constraint enforcement pattern found in risky-microservices-concerns/services/user-service/src/server.js",
+            "scope": {
+              "files": [
+                "risky-microservices-concerns/services/user-service/src/server.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: try\\s*\\{",
+            "status": "suspected",
+            "confidence": 0.65,
+            "owner": "server",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "try\\s*\\{"
+              }
+            },
+            "source_file": "risky-microservices-concerns/services/user-service/src/server.js",
+            "detected_at": "2026-02-09T10:07:34.876Z"
+          },
+          {
+            "id": "catch_s____risky-microservices-concerns_services_user-service_src_server_js_",
+            "system": "automatic",
+            "statement": "Constraint enforcement pattern found in risky-microservices-concerns/services/user-service/src/server.js",
+            "description": "Constraint enforcement pattern found in risky-microservices-concerns/services/user-service/src/server.js",
+            "scope": {
+              "files": [
+                "risky-microservices-concerns/services/user-service/src/server.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: catch\\s*\\(",
+            "status": "suspected",
+            "confidence": 0.65,
+            "owner": "server",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "catch\\s*\\("
+              }
+            },
+            "source_file": "risky-microservices-concerns/services/user-service/src/server.js",
+            "detected_at": "2026-02-09T10:07:34.876Z"
+          },
+          {
+            "id": "error__message_risky-microservices-concerns_services_user-service_src_server_js_",
+            "system": "automatic",
+            "statement": "Constraint enforcement pattern found in risky-microservices-concerns/services/user-service/src/server.js",
+            "description": "Constraint enforcement pattern found in risky-microservices-concerns/services/user-service/src/server.js",
+            "scope": {
+              "files": [
+                "risky-microservices-concerns/services/user-service/src/server.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: error\\.message",
+            "status": "suspected",
+            "confidence": 0.5,
+            "owner": "server",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "error\\.message"
+              }
+            },
+            "source_file": "risky-microservices-concerns/services/user-service/src/server.js",
+            "detected_at": "2026-02-09T10:07:34.876Z"
+          },
+          {
+            "id": "VIOLATION_risky-microservices-concerns_services_user-service_src_server_js_1023",
+            "system": "automatic",
+            "statement": "Explicit violation marker found in risky-microservices-concerns/services/user-service/src/server.js: 'VIOLATION' at position 1023",
+            "description": "Explicit violation marker found in risky-microservices-concerns/services/user-service/src/server.js: 'VIOLATION' at position 1023",
+            "scope": {
+              "files": [
+                "risky-microservices-concerns/services/user-service/src/server.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: VIOLATION",
+            "status": "suspected",
+            "confidence": 0.5,
+            "owner": "server",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "VIOLATION"
+              }
+            },
+            "source_file": "risky-microservices-concerns/services/user-service/src/server.js",
+            "position": 1023,
+            "detected_at": "2026-02-09T10:07:34.876Z"
+          },
+          {
+            "id": "BLOCKED_risky-microservices-concerns_services_user-service_src_server_js_367",
+            "system": "automatic",
+            "statement": "Blocking architectural pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'BLOCKED' at position 367",
+            "description": "Blocking architectural pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'BLOCKED' at position 367",
+            "scope": {
+              "files": [
+                "risky-microservices-concerns/services/user-service/src/server.js"
+              ]
+            },
+            "critical_path": true,
+            "assertion": "Pattern: BLOCKED",
+            "status": "suspected",
+            "confidence": 0.6,
+            "owner": "server",
+            "violated_by": [],
+            "severity": "block",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "BLOCKED"
+              }
+            },
+            "source_file": "risky-microservices-concerns/services/user-service/src/server.js",
+            "position": 367,
+            "detected_at": "2026-02-09T10:07:34.876Z"
+          },
+          {
+            "id": "should__be_risky-microservices-concerns_services_user-service_src_server_js_359",
+            "system": "automatic",
+            "statement": "Should-be pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'should be' at position 359",
+            "description": "Should-be pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'should be' at position 359",
+            "scope": {
+              "files": [
+                "risky-microservices-concerns/services/user-service/src/server.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: should.*be",
+            "status": "suspected",
+            "confidence": 0.6,
+            "owner": "server",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "should.*be"
+              }
+            },
+            "source_file": "risky-microservices-concerns/services/user-service/src/server.js",
+            "position": 359,
+            "detected_at": "2026-02-09T10:07:34.876Z"
+          },
+          {
+            "id": "validat_e_ion__risky-microservices-concerns_services_user-service_src_server_js_1082",
+            "system": "automatic",
+            "statement": "Validation pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'Validate' at position 1082",
+            "description": "Validation pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'Validate' at position 1082",
+            "scope": {
+              "files": [
+                "risky-microservices-concerns/services/user-service/src/server.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: validat(e|ion)",
+            "status": "suspected",
+            "confidence": 0.6,
+            "owner": "server",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "validat(e|ion)"
+              }
+            },
+            "source_file": "risky-microservices-concerns/services/user-service/src/server.js",
+            "position": 1082,
+            "detected_at": "2026-02-09T10:07:34.876Z"
+          },
+          {
+            "id": "validat_e_ion__risky-microservices-concerns_services_user-service_src_server_js_1491",
+            "system": "automatic",
+            "statement": "Validation pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'validation' at position 1491",
+            "description": "Validation pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'validation' at position 1491",
+            "scope": {
+              "files": [
+                "risky-microservices-concerns/services/user-service/src/server.js"
+              ]
+            },
+            "critical_path": false,
+            "assertion": "Pattern: validat(e|ion)",
+            "status": "suspected",
+            "confidence": 0.6,
+            "owner": "server",
+            "violated_by": [],
+            "severity": "risk",
+            "rule": {
+              "type": "pattern",
+              "condition": {
+                "pattern": "validat(e|ion)"
+              }
+            },
+            "source_file": "risky-microservices-concerns/services/user-service/src/server.js",
+            "position": 1491,
+            "detected_at": "2026-02-09T10:07:34.876Z"
+          }
+        ],
+        "boundary": [],
+        "system": []
+      }
+    },
+    "insights": [
+      {
+        "category": "critical_invariants",
+        "title": "Critical System Invariants Detected",
+        "description": "The repository contains 22 critical invariants that must always hold true. Violating these would cause existential system failure.",
+        "severity": "high",
+        "impact": "These invariants protect against system-wide failures"
+      },
+      {
+        "category": "module_invariants",
+        "title": "Module-Level Invariants Found",
+        "description": "The repository has 46 module-level invariants that govern component behavior.",
+        "severity": "low",
+        "impact": "These ensure component-level consistency"
+      }
+    ],
+    "recommendations": [
+      {
+        "priority": "low",
+        "title": "Document Invariant Behavior",
+        "description": "Ensure that all detected invariants are properly documented for team awareness.",
+        "action": "Create documentation explaining each invariant and why it exists."
+      },
+      {
+        "priority": "medium",
+        "title": "Monitor Invariant Violations",
+        "description": "Set up monitoring to track when invariants are violated during system operation.",
+        "action": "Implement logging and alerting for invariant violations."
+      }
+    ],
+    "confidence": "high"
+  },
+  "architectural_health": {
+    "score": 80,
+    "level": "excellent",
+    "assessment": "Excellent architectural health with 22 critical and 0 system-level invariants protecting the codebase."
+  },
+  "authoritative_context": {
+    "metadata": {
+      "canonical": true,
+      "generated_at": "2026-02-09T10:07:34.862Z",
+      "source_commit": "47b651d78fcf4cd316db9534fa471dd5cccde90e",
+      "arcvision_version": "0.1.0",
+      "schema_version": "1.0.0",
+      "trust_level": "high"
+    },
+    "system_identity": {
+      "name": "test_arc",
+      "root_path": "/home/runner/work/test_arc/test_arc",
+      "language": "javascript",
+      "architectural_archetype": {
+        "type": "service_oriented",
+        "confidence": "high",
+        "description": "System primarily follows service_oriented architectural pattern",
+        "authorityPattern": "service_oriented_authority"
+      },
+      "structural_complexity": {
+        "cyclomatic_complexity": -1,
+        "coupling_degree": 0.7692307692307693,
+        "cohesion_measure": 0.7,
+        "overall_complexity": "medium"
+      }
+    },
+    "structural_context": {
+      "authority_cores": [
+        {
+          "file": "blocked-legacy-monolith/src/emailService.js",
+          "authority_score": 10.600000000000001,
+          "blast_radius": 2,
+          "criticality": 4.4,
+          "role": "service",
+          "layer": "logic",
+          "influence_patterns": [
+            "central_coordinator",
+            "cross_layer_bridge"
+          ]
+        },
+        {
+          "file": "blocked-legacy-monolith/src/paymentProcessor.js",
+          "authority_score": 10.600000000000001,
+          "blast_radius": 2,
+          "criticality": 4.4,
+          "role": "module",
+          "layer": "generic",
+          "influence_patterns": [
+            "central_coordinator",
+            "cross_layer_bridge"
+          ]
+        }
+      ],
+      "structural_hubs": [],
+      "coupling_patterns": [],
+      "architectural_boundaries": {
+        "generic": {
+          "files": 6,
+          "authority_cores": [],
+          "boundary_violations": []
+        },
+        "state": {
+          "files": 1,
+          "authority_cores": [],
+          "boundary_violations": []
+        },
+        "logic": {
+          "files": 6,
+          "authority_cores": [],
+          "boundary_violations": []
+        }
+      },
+      "structural_invariants": [
+        {
+          "rule": "service_component_ratio",
+          "description": "Maintain balance between services and components",
+          "current_value": null,
+          "recommended_range": "0.2-0.5"
+        }
+      ]
+    },
+    "reliability_indicators": {
+      "analysis_coverage": {
+        "total_files_analyzed": 13,
+        "code_files": 8,
+        "configuration_files": 5,
+        "documentation_files": 0,
+        "coverage_percentage": 100
+      },
+      "structural_completeness": {
+        "completeness_score": 95,
+        "missing_elements": [],
+        "validation_passed": true
+      },
+      "confidence_scores": {
+        "overall_confidence": 0.92,
+        "data_quality": 0.95,
+        "analysis_depth": 0.88
+      },
+      "validation_status": "validated"
+    },
+    "integrity": {
+      "content_hash": "63b5720fd027f85c6ae65eb1b41169b0c5c5e5dbf68283203fbbda930a37372f",
+      "generation_signature": "e01513aeeb5914d875e7491c0acf1a24450ab15429ed74c9e695879fa3116692"
+    }
+  },
+  "integrity": {
+    "sha256": "2a0a0da56475fb50c2241815a16932ea6efa075bf7cdfe8985dbe785aee9e037"
+  }
+}

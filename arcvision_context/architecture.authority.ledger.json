@@ -1,0 +1,291 @@
+{
+  "schema_version": "1.0",
+  "system_id": "test_arc",
+  "created_at": "2026-02-09T10:07:33.990Z",
+  "ledger": [
+    {
+      "event_id": "evt_1770631659380_ntoeefetg",
+      "timestamp": "2026-02-09T10:07:39.380Z",
+      "decision": "BLOCKED",
+      "commit": "HEAD",
+      "branch": "unknown",
+      "author": "unknown",
+      "violations": [
+        {
+          "id": "try_s____architecture-destroyer_js_",
+          "description": "Constraint enforcement pattern found in architecture-destroyer.js",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "catch_s____architecture-destroyer_js_",
+          "description": "Constraint enforcement pattern found in architecture-destroyer.js",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "VIOLATION_architecture-destroyer_js_288",
+          "description": "Explicit violation marker found in architecture-destroyer.js: 'VIOLATION' at position 288",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "schema_arcvision_context_architecture_authority_ledger_json_11",
+          "description": "Schema definition found in arcvision_context/architecture.authority.ledger.json: 'schema' at position 11",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "VIOLATION_blocked-legacy-monolith_package_json_787",
+          "description": "Explicit violation marker found in blocked-legacy-monolith/package.json: 'violation' at position 787",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "VIOLATION_blocked-legacy-monolith_src_emailService_js_64",
+          "description": "Explicit violation marker found in blocked-legacy-monolith/src/emailService.js: 'violation' at position 64",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "VIOLATION_blocked-legacy-monolith_src_emailService_js_150",
+          "description": "Explicit violation marker found in blocked-legacy-monolith/src/emailService.js: 'VIOLATION' at position 150",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "VIOLATION_blocked-legacy-monolith_src_emailService_js_744",
+          "description": "Explicit violation marker found in blocked-legacy-monolith/src/emailService.js: 'Violation' at position 744",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "BLOCKED_blocked-legacy-monolith_src_emailService_js_160",
+          "description": "Blocking architectural pattern found in blocked-legacy-monolith/src/emailService.js: 'BLOCKED' at position 160",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "try_s____blocked-legacy-monolith_src_index_js_",
+          "description": "Constraint enforcement pattern found in blocked-legacy-monolith/src/index.js",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "catch_s____blocked-legacy-monolith_src_index_js_",
+          "description": "Constraint enforcement pattern found in blocked-legacy-monolith/src/index.js",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "state_s___s__blocked-legacy-monolith_src_index_js_",
+          "description": "State transition constraint pattern found in blocked-legacy-monolith/src/index.js",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "VIOLATION_blocked-legacy-monolith_src_index_js_808",
+          "description": "Explicit violation marker found in blocked-legacy-monolith/src/index.js: 'VIOLATION' at position 808",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "VIOLATION_blocked-legacy-monolith_src_index_js_1133",
+          "description": "Explicit violation marker found in blocked-legacy-monolith/src/index.js: 'Violation' at position 1133",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "validat_e_ion__blocked-legacy-monolith_src_index_js_1614",
+          "description": "Validation pattern found in blocked-legacy-monolith/src/index.js: 'validation' at position 1614",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "setState_blocked-legacy-monolith_src_index_js_1890",
+          "description": "State setter found in blocked-legacy-monolith/src/index.js: 'setState' at position 1890",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "joi_blocked-legacy-monolith_src_index_js_2366",
+          "description": "Joi validation schema found in blocked-legacy-monolith/src/index.js: 'JOI' at position 2366",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "validate_A-Z__blocked-legacy-monolith_src_paymentProcessor_js_1927",
+          "description": "Validate function pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 'validateP' at position 1927",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "VIOLATION_blocked-legacy-monolith_src_paymentProcessor_js_68",
+          "description": "Explicit violation marker found in blocked-legacy-monolith/src/paymentProcessor.js: 'violation' at position 68",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "VIOLATION_blocked-legacy-monolith_src_paymentProcessor_js_157",
+          "description": "Explicit violation marker found in blocked-legacy-monolith/src/paymentProcessor.js: 'VIOLATION' at position 157",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "VIOLATION_blocked-legacy-monolith_src_paymentProcessor_js_1857",
+          "description": "Explicit violation marker found in blocked-legacy-monolith/src/paymentProcessor.js: 'Violation' at position 1857",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "BLOCKED_blocked-legacy-monolith_src_paymentProcessor_js_167",
+          "description": "Blocking architectural pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 'BLOCKED' at position 167",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "validat_e_ion__blocked-legacy-monolith_src_paymentProcessor_js_1926",
+          "description": "Validation pattern found in blocked-legacy-monolith/src/paymentProcessor.js: 'validate' at position 1926",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "state_s___s__blocked-legacy-monolith_test-violation_js_",
+          "description": "State transition constraint pattern found in blocked-legacy-monolith/test-violation.js",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "VIOLATION_blocked-legacy-monolith_test-violation_js_43",
+          "description": "Explicit violation marker found in blocked-legacy-monolith/test-violation.js: 'violation' at position 43",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "try_s____chaos-monkey_js_",
+          "description": "Constraint enforcement pattern found in chaos-monkey.js",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "catch_s____chaos-monkey_js_",
+          "description": "Constraint enforcement pattern found in chaos-monkey.js",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "VIOLATION_chaos-monkey_js_413",
+          "description": "Explicit violation marker found in chaos-monkey.js: 'VIOLATION' at position 413",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "joi_chaos-monkey_js_3487",
+          "description": "Joi validation schema found in chaos-monkey.js: 'joi' at position 3487",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "schema_risky-microservices-concerns_services_shared-models_index_js_118",
+          "description": "Schema definition found in risky-microservices-concerns/services/shared-models/index.js: 'Schema' at position 118",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "try_s____risky-microservices-concerns_services_user-service_src_server_js_",
+          "description": "Constraint enforcement pattern found in risky-microservices-concerns/services/user-service/src/server.js",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "catch_s____risky-microservices-concerns_services_user-service_src_server_js_",
+          "description": "Constraint enforcement pattern found in risky-microservices-concerns/services/user-service/src/server.js",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "VIOLATION_risky-microservices-concerns_services_user-service_src_server_js_1023",
+          "description": "Explicit violation marker found in risky-microservices-concerns/services/user-service/src/server.js: 'VIOLATION' at position 1023",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "BLOCKED_risky-microservices-concerns_services_user-service_src_server_js_367",
+          "description": "Blocking architectural pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'BLOCKED' at position 367",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "validat_e_ion__risky-microservices-concerns_services_user-service_src_server_js_1082",
+          "description": "Validation pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'Validate' at position 1082",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "validat_e_ion__risky-microservices-concerns_services_user-service_src_server_js_1491",
+          "description": "Validation pattern found in risky-microservices-concerns/services/user-service/src/server.js: 'validation' at position 1491",
+          "system": "automatic",
+          "severity": "risk"
+        }
+      ],
+      "blast_radius": 0,
+      "affected_nodes": 0,
+      "override": false
+    },
+    {
+      "event_id": "evt_1770631659629_whhaffyyw",
+      "timestamp": "2026-02-09T10:07:39.629Z",
+      "decision": "BLOCKED",
+      "commit": "HEAD",
+      "branch": "unknown",
+      "author": "unknown",
+      "violations": [
+        {
+          "id": "try_s____architecture-destroyer_js_",
+          "description": "Constraint enforcement pattern found in architecture-destroyer.js",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "catch_s____architecture-destroyer_js_",
+          "description": "Constraint enforcement pattern found in architecture-destroyer.js",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "VIOLATION_architecture-destroyer_js_288",
+          "description": "Explicit violation marker found in architecture-destroyer.js: 'VIOLATION' at position 288",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "try_s____chaos-monkey_js_",
+          "description": "Constraint enforcement pattern found in chaos-monkey.js",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "catch_s____chaos-monkey_js_",
+          "description": "Constraint enforcement pattern found in chaos-monkey.js",
+          "system": "automatic",
+          "severity": "risk"
+        },
+        {
+          "id": "VIOLATION_chaos-monkey_js_413",
+          "description": "Explicit violation marker found in chaos-monkey.js: 'VIOLATION' at position 413",
+          "system": "automatic",
+          "severity": "block"
+        },
+        {
+          "id": "joi_chaos-monkey_js_3487",
+          "description": "Joi validation schema found in chaos-monkey.js: 'joi' at position 3487",
+          "system": "automatic",
+          "severity": "risk"
+        }
+      ],
+      "blast_radius": 0,
+      "affected_nodes": 0,
+      "override": false
+    }
+  ]
+}
