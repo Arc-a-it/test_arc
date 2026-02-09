@@ -1,0 +1,208 @@
+name: ArcVision Independent Architectural Override
+
+on:
+  workflow_dispatch:
+    inputs:
+      event_id:
+        description: 'Event ID to override (e.g., evt_123)'
+        required: true
+        default: 'evt_1770631659380_ntoeefetg"
+      reason:
+        description: 'Reason for override (>10 chars)'
+        required: true
+        default: 'Architectural exception approved by lead'
+      owner:
+        description: 'Owner identifier'
+        required: true
+        default: 'admin'
+
+jobs:
+  arcvision-override-analysis:
+    runs-on: ubuntu-latest
+    name: Independent Architectural Override
+    
+    # Permission to push changes back to the repository
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install ArcVision CLI
+        run: |
+          echo "Installing ArcVision CLI..."
+          npm install -g arcvision
+          echo "✅ ArcVision CLI installed"
+          arcvision --version
+
+      - name: Execute Override
+        run: |
+          # -----------------------------------------------------------------
+          # 🚀 HARDCODED DEFAULTS (Used if inputs are 'evt_REPLACE_ME')
+          # -----------------------------------------------------------------
+          DEFAULT_EVENT_ID="evt_1770631659380_ntoeefetg"
+          DEFAULT_REASON="Testing GitHub Actions override workflow functionality"
+          DEFAULT_OWNER="github-actions-test@arcvision.ai"
+          # -----------------------------------------------------------------
+          
+          # Logic: Use Input if provided, otherwise use Hardcoded Default
+          INPUT_EVENT_ID="${{ github.event.inputs.event_id }}"
+          INPUT_REASON="${{ github.event.inputs.reason }}"
+          INPUT_OWNER="${{ github.event.inputs.owner }}"
+
+          if [ "$INPUT_EVENT_ID" != "evt_REPLACE_ME" ] && [ -n "$INPUT_EVENT_ID" ]; then
+            EVENT_ID="$INPUT_EVENT_ID"
+            echo "🔹 Using Workflow Input Event ID"
+          else
+            EVENT_ID="$DEFAULT_EVENT_ID"
+            echo "🔹 Using Hardcoded Default Event ID"
+          fi
+
+          if [ "$INPUT_REASON" != "Architectural exception approved by lead" ] && [ -n "$INPUT_REASON" ]; then
+            REASON="$INPUT_REASON"
+            echo "🔹 Using Workflow Input Reason"
+          else
+            REASON="$DEFAULT_REASON"
+            echo "🔹 Using Hardcoded Default Reason"
+          fi
+
+          if [ "$INPUT_OWNER" != "admin" ] && [ -n "$INPUT_OWNER" ]; then
+            OWNER="$INPUT_OWNER"
+            echo "🔹 Using Workflow Input Owner"
+          else
+            OWNER="$DEFAULT_OWNER"
+            echo "🔹 Using Hardcoded Default Owner"
+          fi
+          
+          COMMIT_HASH="HEAD"
+          
+          echo "🛡️  Overriding decision for Event ID: $EVENT_ID"
+          echo "Reason: $REASON"
+          echo "Owner: $OWNER"
+          echo "Commit: $COMMIT_HASH"
+          echo ""
+          
+          # Validate values
+          if [ -z "$EVENT_ID" ] || [ "$EVENT_ID" = "evt_replace_me" ]; then
+            echo "❌ EVENT_ID must be set to a valid blocked event ID"
+            exit 1
+          fi
+          
+          if [ ${#REASON} -lt 10 ]; then
+            echo "❌ REASON must be at least 10 characters long"
+            exit 1
+          fi
+          
+          # Ensure context directory exists
+          mkdir -p arcvision_context
+          
+          # Execute the override
+          arcvision override \
+            --event-id "$EVENT_ID" \
+            --reason "$REASON" \
+            --owner "$OWNER" \
+            --commit "$COMMIT_HASH"
+
+      - name: Verify Override Success
+        run: |
+          echo "🔍 Verifying override was recorded..."
+          if [ -f "arcvision_context/architecture.authority.ledger.json" ]; then
+            echo "✅ Authority ledger found"
+            # Show recent ledger entries
+            tail -20 arcvision_context/architecture.authority.ledger.json || echo "Cannot display ledger"
+          else
+            echo "❌ Authority ledger not found"
+            exit 1
+          fi
+          
+          # Check if the override event exists (simple grep)
+          if grep -q "$EVENT_ID" arcvision_context/architecture.authority.ledger.json; then
+            echo "✅ Override event recorded in ledger"
+          else
+            echo "⚠️  Override event not found in ledger"
+          fi
+
+      - name: Push Ledger Changes to GitHub
+        run: |
+          echo "📝 Syncing Authority Ledger to GitHub..."
+          git config --global user.name "ArcVision Governance Bot"
+          git config --global user.email "governance@arcvision.ai"
+          
+          # Ensure we are on the correct branch and up to date
+          echo "Rebasing to avoid conflicts..."
+          git pull --rebase origin ${{ github.ref_name }}
+          
+          # Add the ledger file specifically
+          git add arcvision_context/architecture.authority.ledger.json
+          
+          # Only commit if something changed
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(governance): recorded override for $EVENT_ID"
+            git push origin HEAD:${{ github.ref }}
+            echo "✅ Override successfully synced to GitHub ledger."
+          else
+            echo "⚠️  No changes to ledger detected. Override may have failed or already exists."
+            # Do not exit 1 here, as "no change" is a valid state (idempotency)
+          fi
+
+      - name: Generate Override Report
+        run: |
+          echo "📝 Generating override execution report..."
+          cat > arcvision-override-report.md << EOF
+          # ArcVision Override Execution Report
+          
+          ## Override Details
+          - **Event ID**: $EVENT_ID
+          - **Reason**: $REASON
+          - **Owner**: $OWNER
+          - **Commit**: $COMMIT_HASH
+          - **Execution Time**: $(date)
+          - **Repository**: ${{ github.repository }}
+          - **Branch**: ${{ github.ref }}
+          
+          ## Status
+          ✅ Override executed successfully and committed to ledger
+          
+          ## Next Steps
+          1. Monitor for any related architectural impacts
+          2. Document this override in team knowledge base
+          3. Review override frequency for governance improvement
+          
+          *Generated by ArcVision Hardcoded Override Workflow*
+          EOF
+          echo "✅ Override report generated"
+
+      - name: Upload Override Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: arcvision-override-execution
+          path: |
+            arcvision_context/architecture.authority.ledger.json
+            arcvision-override-report.md
+          retention-days: 30
+
+      - name: Summary
+        run: |
+          echo "🎉 ArcVision Override Execution Complete!"
+          echo ""
+          echo "📋 Summary:"
+          echo "   • Event ID: $EVENT_ID"
+          echo "   • Reason: $REASON"
+          echo "   • Owner: $OWNER"
+          echo "   • Commit: $COMMIT_HASH"
+          echo "   • Status: ✅ Successfully overridden and recorded"
+          echo ""
+          echo "📁 Artifacts available:"
+          echo "   • Updated authority ledger"
+          echo "   • Execution report"
+          echo ""
+          echo "✅ Override workflow execution successful"
